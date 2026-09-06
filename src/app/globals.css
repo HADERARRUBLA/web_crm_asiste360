@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
+/* Design tokens de marca — mismos valores usados en los mockups de Claude Design
+   (Fase 5): navy/violeta, glass, dot-grid, orbes. Ver estrategia-web-asiste360.md. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-navy: #161b33;
+  --color-navy-2: #1f2547;
+  --color-violet: #6c4cf1;
+  --color-violet-2: #9b7bff;
+  --color-blue-tint: #e7eefb;
+  --color-ink: #161b33;
+  --color-gray: #5b6178;
+  --color-line: #e7e5f0;
+  --color-bg: #fbfafe;
+
+  --background: var(--color-bg);
+  --foreground: var(--color-ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-navy: var(--color-navy);
+  --color-navy-2: var(--color-navy-2);
+  --color-violet: var(--color-violet);
+  --color-violet-2: var(--color-violet-2);
+  --color-blue-tint: var(--color-blue-tint);
+  --color-ink: var(--color-ink);
+  --color-gray: var(--color-gray);
+  --color-line: var(--color-line);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-plex-sans);
+  --font-heading: var(--font-sora);
+  --font-mono: var(--font-plex-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dotgrid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(108, 76, 241, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 7s ease-in-out infinite;
 }

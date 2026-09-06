@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Asiste360 — sitio web comercial
 
-## Getting Started
+Sitio comercial de Asiste360 (CRM conversacional multicanal). Construido con
+**Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS v4**.
 
-First, run the development server:
+Contexto completo del proyecto, copy y decisiones de producto en el Project
+de Claude "Marketing Bot Asiste 360" (`estrategia-web-asiste360.md`,
+`copywriting-sitio-asiste360.md`, `legal-sitio-asiste360.md`,
+`tracking-integracion-asiste360.md`).
+
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/` — páginas (App Router). `page.tsx` es el Home.
+- `src/components/` — `SiteNav` y `SiteFooter`, compartidos entre páginas.
+- `src/lib/links.ts` — número de WhatsApp, calendario de demos y helpers de
+  tracking/UTM (ver Fase 7 de la estrategia).
+- `src/app/globals.css` — tokens de marca (colores, tipografías) sobre
+  Tailwind v4 (`@theme`).
 
-## Learn More
+## Despliegue
 
-To learn more about Next.js, take a look at the following resources:
+Pensado para EasyPanel, a partir del `Dockerfile` incluido (build
+multi-stage, `next.config.ts` con `output: "standalone"`). Cada push a
+`main` puede disparar un build/deploy en EasyPanel apuntando a este repo.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Páginas (roadmap de construcción)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [x] Home (`/`)
+- [ ] Precios (`/precios`)
+- [ ] Partners (`/partners`)
+- [ ] Starter (`/starter`)
+- [ ] Planes de crecimiento (`/crecimiento`)
+- [ ] Nosotros (`/nosotros`)
+- [ ] Legal (`/legal/privacidad`, `/legal/terminos`, `/legal/cookies`, `/legal/mensajeria`, `/legal/partners`)
