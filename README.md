@@ -40,4 +40,4 @@ multi-stage, `next.config.ts` con `output: "standalone"`). Cada push a
 - [x] Starter (`/starter`)
 - [x] Planes de crecimiento (`/crecimiento`)
 - [x] Nosotros (`/nosotros`)
-- [ ] Legal (`/legal/privacidad`, `/legal/terminos`, `/legal/cookies`, `/legal/mensajeria`, `/legal/partners`)
+- [x] Legal (`/legal/privacidad`, `/legal/terminos`, `/legal/cookies`, `/legal/mensajeria`, `/legal/partners`) — borrador, pendiente revision de abogado
