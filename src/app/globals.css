@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
 /* Design tokens de marca — mismos valores usados en los mockups de Claude Design
-   (Fase 5): navy/violeta, glass, dot-grid, orbes. Ver estrategia-web-asiste360.md. */
+   (Fase 5): navy/violeta, glass, dot-grid, orbes. Ver estrategia-web-asiste360.md.
+
+   IMPORTANTE: los colores van directo con su valor hex dentro de "@theme inline"
+   (no como "var(--color-navy)" apuntando al mismo nombre) — declarar una variable
+   CSS en función de sí misma es una referencia circular inválida para el
+   navegador, y eso fue justamente el bug que dejaba todo el color de marca sin
+   aplicarse en el sitio (texto/fondos casi invisibles). */
 :root {
+  --background: #fbfafe;
+  --foreground: #161b33;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-navy: #161b33;
   --color-navy-2: #1f2547;
   --color-violet: #6c4cf1;
@@ -11,23 +24,6 @@
   --color-ink: #161b33;
   --color-gray: #5b6178;
   --color-line: #e7e5f0;
-  --color-bg: #fbfafe;
-
-  --background: var(--color-bg);
-  --foreground: var(--color-ink);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-navy: var(--color-navy);
-  --color-navy-2: var(--color-navy-2);
-  --color-violet: var(--color-violet);
-  --color-violet-2: var(--color-violet-2);
-  --color-blue-tint: var(--color-blue-tint);
-  --color-ink: var(--color-ink);
-  --color-gray: var(--color-gray);
-  --color-line: var(--color-line);
 
   --font-sans: var(--font-plex-sans);
   --font-heading: var(--font-sora);
