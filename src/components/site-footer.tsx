@@ -26,6 +26,9 @@ export function SiteFooter() {
             <div className="font-semibold text-navy">Legal</div>
             <Link href="/legal/privacidad">Privacidad</Link>
             <Link href="/legal/terminos">Términos</Link>
+            <Link href="/legal/cookies">Cookies</Link>
+            <Link href="/legal/mensajeria">Mensajería</Link>
+            <Link href="/legal/partners">Términos de Partners</Link>
           </div>
         </div>
       </div>
