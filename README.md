@@ -36,7 +36,7 @@ multi-stage, `next.config.ts` con `output: "standalone"`). Cada push a
 
 - [x] Home (`/`)
 - [x] Precios (`/precios`)
-- [ ] Partners (`/partners`)
+- [x] Partners (`/partners`)
 - [ ] Starter (`/starter`)
 - [ ] Planes de crecimiento (`/crecimiento`)
 - [ ] Nosotros (`/nosotros`)
