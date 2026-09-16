@@ -53,9 +53,23 @@ const FAQ = [
   { q: "¿Hay permanencia mínima?", a: "No — cancelas cuando quieras, sin contratos forzosos." },
 ];
 
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function StarterPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
       <SiteNav />
       <main className="flex-1">
         {/* HERO */}
@@ -190,6 +204,7 @@ export default function StarterPage() {
 
         {/* CTA FINAL */}
         <section className="dotgrid relative mx-6 my-20 overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center md:mx-12">
+          <div className="relative">
           <h2 className="font-heading text-3xl font-bold text-white">Empieza gratis hoy</h2>
           <p className="mt-3 text-sm text-[#C9CCE5]">30 días, sin tarjeta.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-4">
@@ -213,6 +228,7 @@ export default function StarterPage() {
             >
               Habla con nuestro Agente
             </a>
+          </div>
           </div>
         </section>
       </main>

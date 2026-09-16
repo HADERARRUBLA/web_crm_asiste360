@@ -22,6 +22,10 @@ export const WHATSAPP_MESSAGES = {
   planAvanzado: "Vi el plan Avanzado en asiste360.com y quiero hablar con ventas",
   planEnterprise: "Quiero hablar sobre un plan Enterprise para mi negocio",
   partners: "Quiero aplicar como Partner de Asiste360",
+  equipoSofi: "Hola Sofi, vengo de asiste360.com y quiero ver cómo trabajas en vivo",
+  equipoLeo: "Vi a Leo (Leads y reactivación) en asiste360.com y quiero saber más",
+  equipoClara: "Vi a Clara (PQR y satisfacción) en asiste360.com y quiero saber más",
+  equipoMarco: "Vi a Marco (Cobranza y acuerdos) en asiste360.com y quiero saber más",
 } as const;
 
 /** Eventos de analítica sugeridos por CTA (ver Fase 7) — nombre estándar GA4. */

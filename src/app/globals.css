@@ -36,14 +36,53 @@ body {
 }
 
 .dotgrid {
+  position: relative;
+}
+
+.dotgrid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1.2px, transparent 1.2px);
   background-size: 26px 26px;
+  pointer-events: none;
 }
 
 .glass-light {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(108, 76, 241, 0.14);
   backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover consistente para tarjetas (features, FAQ, planes) en todo el sitio */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108, 76, 241, 0.45);
+  box-shadow: 0 20px 36px -16px rgba(22, 27, 51, 0.22);
+}
+
+/* Hover para chips/etiquetas con borde (canales, industrias) */
+.chip-hover {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.chip-hover:hover {
+  background-color: var(--color-navy);
+  color: #fff;
+  border-color: var(--color-navy);
+  transform: translateY(-2px);
+}
+
+/* Tarjeta de plan destacada (Pro): ya tiene su propio desplazamiento base,
+   así que en vez de competir por "transform" solo intensificamos el brillo. */
+.pro-card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.pro-card-hover:hover {
+  box-shadow: 0 36px 64px -16px rgba(108, 76, 241, 0.5);
 }
 
 @keyframes pulse-glow {
@@ -60,4 +99,104 @@ body {
 
 .animate-pulse-glow {
   animation: pulse-glow 7s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-y {
+  animation: float-y 3.5s ease-in-out infinite;
+}
+
+/* Demo "IA conversacional" card (Home, "Bajo el capó"): every piece (chat
+   bubbles, typing dots, calendar slot, pipeline card) shares one 8s cycle,
+   each with its own show/hide percentages baked into its own keyframes —
+   no animation-delay juggling, everything replays in sync forever. */
+@keyframes demo-msg-1 {
+  0%, 4% { opacity: 0; transform: translateY(6px); }
+  9%, 97% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
+}
+.demo-msg-1 { animation: demo-msg-1 8s ease-in-out infinite; }
+
+@keyframes demo-typing-1 {
+  0%, 14% { opacity: 0; }
+  18%, 25% { opacity: 1; }
+  29%, 100% { opacity: 0; }
+}
+.demo-typing-1 { animation: demo-typing-1 8s ease-in-out infinite; }
+
+@keyframes demo-msg-2 {
+  0%, 26% { opacity: 0; transform: translateY(6px); }
+  31%, 97% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
+}
+.demo-msg-2 { animation: demo-msg-2 8s ease-in-out infinite; }
+
+@keyframes demo-msg-3 {
+  0%, 40% { opacity: 0; transform: translateY(6px); }
+  45%, 97% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
+}
+.demo-msg-3 { animation: demo-msg-3 8s ease-in-out infinite; }
+
+@keyframes demo-typing-2 {
+  0%, 51% { opacity: 0; }
+  55%, 62% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+.demo-typing-2 { animation: demo-typing-2 8s ease-in-out infinite; }
+
+@keyframes demo-msg-4 {
+  0%, 65% { opacity: 0; transform: translateY(6px); }
+  70%, 97% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
+}
+.demo-msg-4 { animation: demo-msg-4 8s ease-in-out infinite; }
+
+@keyframes demo-land {
+  0%, 71% { opacity: 0; transform: scale(0.85); }
+  78%, 97% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.85); }
+}
+.demo-calendar-slot,
+.demo-pipeline-card {
+  animation: demo-land 8s ease-in-out infinite;
+}
+
+@keyframes dot-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+.dot-bounce {
+  animation: dot-bounce 1s ease-in-out infinite;
 }

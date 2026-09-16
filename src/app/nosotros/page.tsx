@@ -69,6 +69,7 @@ export default function NosotrosPage() {
 
         {/* CTA FINAL */}
         <section className="dotgrid relative mx-6 my-20 overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center md:mx-12">
+          <div className="relative">
           <h2 className="font-heading text-3xl font-bold text-white">Conversemos</h2>
           <div className="mt-7 flex flex-wrap justify-center gap-4">
             <a
@@ -81,6 +82,7 @@ export default function NosotrosPage() {
             >
               Habla con nuestro Agente por WhatsApp
             </a>
+          </div>
           </div>
         </section>
       </main>

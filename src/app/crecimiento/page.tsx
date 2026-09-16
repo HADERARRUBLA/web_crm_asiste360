@@ -73,9 +73,23 @@ const FAQ = [
   },
 ];
 
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function CrecimientoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
       <SiteNav />
       <main className="flex-1">
         {/* HERO */}
@@ -206,6 +220,7 @@ export default function CrecimientoPage() {
 
         {/* CTA FINAL */}
         <section className="dotgrid relative mx-6 my-20 overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center md:mx-12">
+          <div className="relative">
           <h2 className="font-heading text-3xl font-bold text-white">Hablemos de tu escala</h2>
           <div className="mt-7 flex flex-wrap justify-center gap-4">
             <a
@@ -218,6 +233,7 @@ export default function CrecimientoPage() {
             >
               Agenda una demo
             </a>
+          </div>
           </div>
         </section>
       </main>

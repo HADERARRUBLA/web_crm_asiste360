@@ -92,9 +92,23 @@ const FAQ = [
   },
 ];
 
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function PartnersPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
       <SiteNav active="Partners" />
       <main className="flex-1">
         {/* HERO */}
@@ -135,8 +149,8 @@ export default function PartnersPage() {
                   key={tier.name}
                   className={
                     tier.tone === "top"
-                      ? "flex flex-col rounded-3xl bg-gradient-to-br from-navy to-[#372b70] p-7 text-center text-white shadow-[0_30px_60px_-16px_rgba(0,0,0,0.35)] md:-translate-y-2.5"
-                      : "glass-light flex flex-col rounded-3xl p-7 text-center"
+                      ? "pro-card-hover flex flex-col rounded-3xl bg-gradient-to-br from-navy to-[#372b70] p-7 text-center text-white shadow-[0_30px_60px_-16px_rgba(0,0,0,0.35)] hover:scale-[1.02] md:-translate-y-2.5"
+                      : "glass-light card-hover flex flex-col rounded-3xl p-7 text-center"
                   }
                 >
                   {tier.badge && (
@@ -173,7 +187,7 @@ export default function PartnersPage() {
             <h2 className="text-center font-heading text-3xl font-bold text-navy">Cómo funciona</h2>
             <div className="mt-10 grid gap-6 md:grid-cols-4">
               {STEPS.map((step) => (
-                <div key={step.n} className="glass-light rounded-2xl p-6">
+                <div key={step.n} className="glass-light card-hover rounded-2xl p-6">
                   <span className="font-heading text-3xl font-extrabold text-violet">{step.n}</span>
                   <h3 className="mt-3 font-heading text-base font-bold text-navy">{step.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-gray">{step.body}</p>
@@ -191,7 +205,7 @@ export default function PartnersPage() {
             </h2>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
               {BENEFITS.map((benefit) => (
-                <div key={benefit} className="flex items-start gap-3 rounded-2xl bg-white p-5">
+                <div key={benefit} className="card-hover flex items-start gap-3 rounded-2xl bg-white p-5">
                   <span className="mt-0.5 text-violet">✔</span>
                   <p className="text-sm text-navy">{benefit}</p>
                 </div>
@@ -206,7 +220,7 @@ export default function PartnersPage() {
             <h2 className="text-center font-heading text-3xl font-bold text-navy">Preguntas frecuentes</h2>
             <div className="mt-10 space-y-4">
               {FAQ.map((item) => (
-                <div key={item.q} className="glass-light rounded-2xl p-6">
+                <div key={item.q} className="glass-light card-hover rounded-2xl p-6">
                   <p className="font-semibold text-navy">{item.q}</p>
                   <p className="mt-2 text-sm leading-relaxed text-gray">{item.a}</p>
                 </div>
@@ -217,6 +231,7 @@ export default function PartnersPage() {
 
         {/* CTA FINAL */}
         <section className="dotgrid relative mx-6 my-20 overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center md:mx-12">
+          <div className="relative">
           <h2 className="font-heading text-3xl font-bold text-white">
             ¿Listo para sumar Asiste360 a tu portafolio?
           </h2>
@@ -231,6 +246,7 @@ export default function PartnersPage() {
             >
               Aplica como Partner
             </a>
+          </div>
           </div>
         </section>
       </main>

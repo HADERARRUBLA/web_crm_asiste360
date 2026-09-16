@@ -164,9 +164,46 @@ const FAQ = [
   },
 ];
 
+const PRODUCT_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Asiste360",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "CRM conversacional multicanal con IA que centraliza WhatsApp, Instagram, Facebook y más — pipeline de ventas, calendario, tareas y campañas en un solo lugar.",
+  url: "https://asiste360.com/precios",
+  offers: PLANS.filter((plan) => plan.id !== "enterprise").map((plan) => ({
+    "@type": "Offer",
+    name: `Asiste360 ${plan.name}`,
+    price: plan.price.replace(/[^0-9.]/g, ""),
+    priceCurrency: "USD",
+    url: "https://asiste360.com/precios",
+    description: `${plan.channels} canales · ${plan.users} usuarios incluidos · ${plan.crm}`,
+  })),
+};
+
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function PreciosPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PRODUCT_JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
       <SiteNav />
       <main className="flex-1">
         {/* HEADER */}
@@ -191,8 +228,8 @@ export default function PreciosPage() {
                 key={plan.id}
                 className={
                   plan.highlighted
-                    ? "flex flex-col rounded-3xl bg-gradient-to-br from-navy to-[#372b70] p-7 text-white shadow-[0_30px_60px_-16px_rgba(0,0,0,0.35)] md:-translate-y-2.5"
-                    : "glass-light flex flex-col rounded-3xl p-7"
+                    ? "pro-card-hover flex flex-col rounded-3xl bg-gradient-to-br from-navy to-[#372b70] p-7 text-white shadow-[0_30px_60px_-16px_rgba(0,0,0,0.35)] hover:scale-[1.02] md:-translate-y-2.5"
+                    : "glass-light card-hover flex flex-col rounded-3xl p-7"
                 }
               >
                 {plan.badge && (
@@ -313,7 +350,7 @@ export default function PreciosPage() {
             <h2 className="text-center font-heading text-3xl font-bold text-navy">Preguntas frecuentes</h2>
             <div className="mt-10 space-y-4">
               {FAQ.map((item) => (
-                <div key={item.q} className="glass-light rounded-2xl p-6">
+                <div key={item.q} className="glass-light card-hover rounded-2xl p-6">
                   <p className="font-semibold text-navy">{item.q}</p>
                   <p className="mt-2 text-sm leading-relaxed text-gray">{item.a}</p>
                 </div>
@@ -324,6 +361,7 @@ export default function PreciosPage() {
 
         {/* CTA FINAL */}
         <section className="dotgrid relative mx-6 my-20 overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center md:mx-12">
+          <div className="relative">
           <h2 className="font-heading text-3xl font-bold text-white">
             ¿Listo para elegir tu plan?
           </h2>
@@ -344,6 +382,7 @@ export default function PreciosPage() {
             >
               Habla con Ventas
             </a>
+          </div>
           </div>
         </section>
       </main>
