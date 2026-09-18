@@ -102,7 +102,6 @@ const SCOPE: ScopeSection[] = [
   },
   {
     title: "CRM & Productividad",
-    badge: { label: "BORRADOR · PENDIENTE VALIDAR", tone: "draft" },
     rows: [
       { feature: "Bandeja de entrada centralizada", values: ["✔", "✔", "✔", "✔"] },
       { feature: "Gestión de contactos", values: ["✔", "✔", "✔", "✔"] },
@@ -111,9 +110,20 @@ const SCOPE: ScopeSection[] = [
       { feature: "Tareas", values: ["✔", "✔", "✔", "✔"] },
       { feature: "Campañas / difusiones", values: ["✔ básicas", "✔", "✔", "✔"] },
       { feature: "Constructor de flujos visuales", values: ["—", "✔", "✔", "✔"] },
-      { feature: "Reportes básicos", values: ["✔", "✔", "✔", "✔"] },
-      { feature: "Reportes avanzados/personalizados", values: ["—", "—", "✔", "✔"] },
       { feature: "Integración con ERP y sistemas propios", values: ["—", "—", "✔ (vía API/MCP)", "✔ ilimitado"] },
+    ],
+  },
+  {
+    title: "Reportes & Analítica",
+    rows: [
+      { feature: "Dashboard de métricas en tiempo real", values: ["✔ básico", "✔", "✔", "✔"] },
+      { feature: "Reportes por canal", values: ["✔", "✔", "✔", "✔"] },
+      { feature: "Funnel de conversión (Captura → Convierte → Retiene)", values: ["—", "✔", "✔", "✔"] },
+      { feature: "Tiempos de respuesta y SLA", values: ["—", "✔", "✔", "✔"] },
+      { feature: "Encuestas de satisfacción automáticas", values: ["—", "✔", "✔", "✔"] },
+      { feature: "Desempeño por agente (humano e IA)", values: ["—", "—", "✔", "✔"] },
+      { feature: "Reportes programados y exportables", values: ["—", "—", "✔", "✔"] },
+      { feature: "Dashboards y reportes a la medida vía API/MCP", values: ["—", "—", "✔ bajo pedido", "✔ ilimitado"] },
     ],
   },
   {

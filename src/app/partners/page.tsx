@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/links";
+import { GHL_BOOKING_URL } from "@/lib/links";
+
+const BECOME_PARTNER_URL = "https://app.asiste360.com/become-partner";
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -125,14 +127,24 @@ export default function PartnersPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href={buildWhatsAppLink(WHATSAPP_MESSAGES.partners)}
+              href={BECOME_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              data-analytics="cta_whatsapp_click"
+              data-analytics="become_partner_click"
               data-page-source="partners_hero"
               className="rounded-xl bg-gradient-to-br from-violet-2 to-violet px-7 py-4 font-semibold text-white"
             >
               Aplica como Partner
+            </a>
+            <a
+              href={GHL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics="demo_booking_click"
+              data-page-source="partners_hero"
+              className="rounded-xl border border-line px-7 py-4 font-semibold text-navy"
+            >
+              Agendar ahora
             </a>
           </div>
         </section>
@@ -237,14 +249,24 @@ export default function PartnersPage() {
           </h2>
           <div className="mt-7 flex flex-wrap justify-center gap-4">
             <a
-              href={buildWhatsAppLink(WHATSAPP_MESSAGES.partners)}
+              href={BECOME_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              data-analytics="cta_whatsapp_click"
+              data-analytics="become_partner_click"
               data-page-source="partners_cta_final"
               className="rounded-xl bg-gradient-to-br from-violet-2 to-violet px-7 py-4 font-semibold text-white"
             >
               Aplica como Partner
+            </a>
+            <a
+              href={GHL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics="demo_booking_click"
+              data-page-source="partners_cta_final"
+              className="rounded-xl border border-white/30 px-7 py-4 font-semibold text-white"
+            >
+              Agendar ahora
             </a>
           </div>
           </div>

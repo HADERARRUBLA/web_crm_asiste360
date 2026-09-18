@@ -83,6 +83,9 @@ export default function HomePage() {
               <div className="mt-5 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 font-mono text-xs text-[#9FE8C0]">
                 canales.conectar() → crm.centralizar() → ventas.crecer()
               </div>
+              <div className="mt-3 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 font-mono text-xs text-[#9FE8C0]">
+                Lo que no se mide, no se mejora — y aquí se mide todo.
+              </div>
               <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
                 <a
                   href={buildWhatsAppLink(WHATSAPP_MESSAGES.equipoSofi)}
@@ -388,61 +391,69 @@ export default function HomePage() {
             </div>
 
             {/* tarjetas de apoyo — también a todo el ancho */}
-            <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-              {[
-                {
-                  title: "Pipeline de ventas",
-                  text: "Sigue cada oportunidad de principio a fin.",
-                  icon: <path d="M4 5h16l-6 8v6l-4-2v-4L4 5Z" stroke="#6C4CF1" strokeWidth="1.8" strokeLinejoin="round" />,
-                },
-                {
-                  title: "Calendario & tareas",
-                  text: "Agenda citas y da seguimiento sin fricción.",
-                  icon: (
-                    <>
-                      <rect x="4" y="5" width="16" height="15" rx="2" stroke="#6C4CF1" strokeWidth="1.6" />
-                      <path d="M4 9.5h16M8 3v3.5M16 3v3.5" stroke="#6C4CF1" strokeWidth="1.6" strokeLinecap="round" />
-                    </>
-                  ),
-                },
-                {
-                  title: "Constructor de flujos",
-                  text: "Automatiza cualquier proceso, sin código.",
-                  icon: <path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z" stroke="#6C4CF1" strokeWidth="1.8" strokeLinejoin="round" />,
-                },
-              ].map((card) => (
-                <div key={card.title} className="glass-light card-hover rounded-3xl border border-line p-7">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-tint">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      {card.icon}
-                    </svg>
+            <div className="dotgrid-navy mt-5 rounded-3xl bg-blue-tint/40 p-6 md:p-8">
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+                {[
+                  {
+                    title: "Pipeline de ventas",
+                    text: "Sigue cada oportunidad de principio a fin.",
+                    icon: <path d="M4 5h16l-6 8v6l-4-2v-4L4 5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />,
+                  },
+                  {
+                    title: "Calendario & tareas",
+                    text: "Agenda citas y da seguimiento sin fricción.",
+                    icon: (
+                      <>
+                        <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" strokeWidth="1.4" />
+                        <path d="M4 9.5h16M8 3v3.5M16 3v3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                      </>
+                    ),
+                  },
+                  {
+                    title: "Constructor de flujos",
+                    text: "Automatiza cualquier proceso, sin código.",
+                    icon: <path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />,
+                  },
+                  {
+                    title: "Integraciones ilimitadas",
+                    text: "Se conecta con cualquier sistema que hable API o MCP — incluido tu ERP.",
+                    badge: "API · MCP",
+                    icon: (
+                      <>
+                        <path d="M4 17 10 11 14 15 20 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M15 7h5v5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                      </>
+                    ),
+                  },
+                  {
+                    title: "Bandeja unificada + Campañas + Reportes",
+                    text: "Toda la conversación y los números de tu negocio, en un solo lugar.",
+                    icon: <path d="M4 4h16v12H8l-4 4V4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />,
+                  },
+                ].map((card) => (
+                  <div key={card.title} className="feature-card rounded-3xl border border-line p-7">
+                    <div className="feature-card-watermark text-violet">
+                      <svg width="96" height="96" viewBox="0 0 24 24" fill="none">
+                        {card.icon}
+                      </svg>
+                    </div>
+                    <div className="feature-card-content">
+                      {card.badge ? (
+                        <span className="mb-3 inline-block rounded-full bg-blue-tint px-3 py-1 font-mono text-[11px] font-semibold text-violet">
+                          {card.badge}
+                        </span>
+                      ) : (
+                        <div className="feature-card-icon flex h-[46px] w-[46px] items-center justify-center rounded-[13px] text-white">
+                          <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+                            {card.icon}
+                          </svg>
+                        </div>
+                      )}
+                      <h3 className="mt-4 font-heading text-base font-bold text-navy">{card.title}</h3>
+                      <p className="mt-1.5 text-[13px] leading-relaxed text-gray">{card.text}</p>
+                    </div>
                   </div>
-                  <h3 className="mt-4 font-heading text-base font-bold text-navy">{card.title}</h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-gray">{card.text}</p>
-                </div>
-              ))}
-
-              <div className="glass-light card-hover rounded-3xl border border-line p-7">
-                <span className="inline-block rounded-full bg-blue-tint px-3 py-1 font-mono text-[11px] font-semibold text-violet">
-                  API · MCP
-                </span>
-                <h3 className="mt-4 font-heading text-base font-bold text-navy">Integraciones ilimitadas</h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-gray">
-                  Se conecta con cualquier sistema que hable API o MCP — incluido tu ERP.
-                </p>
-              </div>
-              <div className="glass-light card-hover rounded-3xl border border-line p-7">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-tint">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 4h16v12H8l-4 4V4Z" stroke="#6C4CF1" strokeWidth="1.8" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="mt-4 font-heading text-base font-bold text-navy">
-                  Bandeja unificada + Campañas + Reportes
-                </h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-gray">
-                  Toda la conversación y los números de tu negocio, en un solo lugar.
-                </p>
+                ))}
               </div>
             </div>
           </div>
@@ -476,6 +487,293 @@ export default function HomePage() {
                   <p className="mt-2 text-sm leading-relaxed text-gray">{step.text}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* REPORTES EN TIEMPO REAL */}
+        <section className="px-6 py-20 md:px-12">
+          <div className="mx-auto max-w-6xl">
+            <p className="text-center font-mono text-[13px] font-semibold uppercase tracking-wider text-violet">
+              Datos, no corazonadas
+            </p>
+            <h2 className="mt-3 text-center font-heading text-3xl font-bold text-navy md:text-4xl">
+              Reportes en tiempo real, sin armar una sola tabla dinamica
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-gray">
+              El modulo de Analiticas te muestra como va tu negocio en vivo. ¿Necesitas algo mas
+              profundo? Nos conectamos a la API de tu cuenta y construimos el reporte exacto que
+              buscas.
+            </p>
+
+            <div className="mt-12 space-y-8">
+              <div className="dotgrid-navy rounded-3xl bg-blue-tint/40 p-5 md:p-6">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  {[
+                    {
+                      title: "Funnel de conversion",
+                      text: "Cuantos leads entran, cuantos agendan y cuantos se convierten en cliente, por canal.",
+                      icon: <path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />,
+                    },
+                    {
+                      title: "Tiempos de respuesta",
+                      text: "Cuanto tarda tu equipo -- o tu agente IA -- en responder, en promedio y por canal.",
+                      icon: (
+                        <>
+                          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+                          <path d="M12 8v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </>
+                      ),
+                    },
+                    {
+                      title: "Volumen por canal",
+                      text: "Cuantos mensajes recibe cada canal, para saber donde enfocar tu inversion.",
+                      icon: <path d="M5 19V10M12 19V5M19 19v-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />,
+                    },
+                    {
+                      title: "Satisfaccion del cliente",
+                      text: "Encuestas automaticas despues de cada conversacion resuelta.",
+                      icon: <path d="M12 3.5l2.3 4.7 5.2.8-3.8 3.7.9 5.2L12 15.5l-4.6 2.4.9-5.2-3.8-3.7 5.2-.8L12 3.5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />,
+                    },
+                    {
+                      title: "Desempeno del equipo",
+                      text: "Compara resultados entre agentes humanos y agentes de IA.",
+                      icon: (
+                        <>
+                          <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="1.4" />
+                          <circle cx="17" cy="9.5" r="2.3" stroke="currentColor" strokeWidth="1.3" />
+                          <path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                          <path d="M14.5 15c2.3.2 4 2 4 4.7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+                        </>
+                      ),
+                    },
+                    {
+                      title: "Reportes a la medida via API",
+                      text: "¿Necesitas algo que no esta en el panel? Nos conectamos a la API de tu cuenta y lo construimos.",
+                      icon: (
+                        <>
+                          <path d="M4 17 10 11 14 15 20 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M15 7h5v5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </>
+                      ),
+                    },
+                  ].map((card) => (
+                    <div key={card.title} className="feature-card rounded-2xl border border-line p-6">
+                      <div className="feature-card-watermark text-violet">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                          {card.icon}
+                        </svg>
+                      </div>
+                      <div className="feature-card-content">
+                        <div className="feature-card-icon flex h-10 w-10 items-center justify-center rounded-[11px] text-white">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            {card.icon}
+                          </svg>
+                        </div>
+                        <h3 className="mt-3 font-heading text-base font-bold text-navy">{card.title}</h3>
+                        <p className="mt-1.5 text-[13px] leading-relaxed text-gray">{card.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-[#372b70] p-4 shadow-[0_30px_70px_-30px_rgba(22,27,51,0.55)] md:p-6">
+                <div className="mb-5 flex items-center gap-2 rounded-xl bg-white/5 px-4 py-2.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff6159]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                  <span className="ml-3 rounded-md bg-white/10 px-3 py-1 font-mono text-[11px] text-white/60">
+                    app.asiste360.com/analiticas
+                  </span>
+                </div>
+
+                <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <p className="font-heading text-[15px] font-bold text-white">
+                      Panel de analitica -- todos los canales
+                    </p>
+                    <p className="mt-0.5 text-[11.5px] text-white/50">
+                      Vista ilustrativa -- no corresponde a datos reales de ningun cliente
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.08] px-3 py-1.5 text-[11.5px] font-medium text-white/80">
+                    Ultimos 14 dias
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {[
+                    { label: "Conversaciones atendidas", value: "12,480", trend: "+18%", arrow: "▲" },
+                    { label: "Tiempo de respuesta prom.", value: "42 s", trend: "-12%", arrow: "▼" },
+                    { label: "Tasa de conversion", value: "34%", trend: "+6%", arrow: "▲" },
+                    { label: "Satisfaccion (CSAT)", value: "4.8/5", trend: "+0.3", arrow: "▲" },
+                  ].map((kpi) => (
+                    <div key={kpi.label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                      <p className="text-[11px] font-medium text-white/55">{kpi.label}</p>
+                      <p className="mt-2 font-heading text-xl font-bold text-white">{kpi.value}</p>
+                      <span className="mt-2 inline-block rounded-full bg-[#0d9488]/25 px-2 py-0.5 text-[11px] font-semibold text-[#6ee7c8]">
+                        {kpi.arrow} {kpi.trend}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-3 grid gap-3 lg:grid-cols-[1.6fr_1fr]">
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-[13px] font-semibold text-white">
+                      Conversaciones totales vs. resueltas por IA
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-white/45">Ultimos 14 dias</p>
+                    <svg viewBox="0 0 640 220" className="mt-2 h-[180px] w-full" role="img" aria-label="Grafico de lineas: conversaciones totales y resueltas por IA en los ultimos 14 dias">
+                      <line x1="34" y1="194.0" x2="630" y2="194.0" stroke="rgba(255,255,255,0.09)" />
+                      <line x1="34" y1="149.5" x2="630" y2="149.5" stroke="rgba(255,255,255,0.09)" />
+                      <line x1="34" y1="105.0" x2="630" y2="105.0" stroke="rgba(255,255,255,0.09)" />
+                      <line x1="34" y1="60.5" x2="630" y2="60.5" stroke="rgba(255,255,255,0.09)" />
+                      <line x1="34" y1="16.0" x2="630" y2="16.0" stroke="rgba(255,255,255,0.09)" />
+                      <text x="2" y="197" fill="rgba(255,255,255,0.4)" fontSize="9.5">0</text>
+                      <text x="0" y="153" fill="rgba(255,255,255,0.4)" fontSize="9.5">140</text>
+                      <text x="0" y="108" fill="rgba(255,255,255,0.4)" fontSize="9.5">280</text>
+                      <text x="0" y="64" fill="rgba(255,255,255,0.4)" fontSize="9.5">420</text>
+                      <text x="0" y="19" fill="rgba(255,255,255,0.4)" fontSize="9.5">560</text>
+
+                      <path
+                        d="M34.0,194.0 L34.0,92.3 L79.8,86.6 L125.7,94.8 L171.5,78.0 L217.4,70.7 L263.2,75.1 L309.1,66.2 L354.9,68.4 L400.8,57.3 L446.6,50.3 L492.5,53.8 L538.3,45.2 L584.2,39.5 L630.0,33.5 L630.0,194.0 Z"
+                        fill="#7c5cff"
+                        opacity="0.13"
+                      />
+                      <polyline
+                        points="34.0,131.1 79.8,126.0 125.7,128.5 171.5,117.4 217.4,110.7 263.2,112.9 309.1,104.7 354.9,105.3 400.8,96.1 446.6,90.4 492.5,92.9 538.3,85.6 584.2,80.5 630.0,75.8"
+                        fill="none"
+                        stroke="#0d9488"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <polyline
+                        points="34.0,92.3 79.8,86.6 125.7,94.8 171.5,78.0 217.4,70.7 263.2,75.1 309.1,66.2 354.9,68.4 400.8,57.3 446.6,50.3 492.5,53.8 538.3,45.2 584.2,39.5 630.0,33.5"
+                        fill="none"
+                        stroke="#7c5cff"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle cx="630.0" cy="33.5" r="4" fill="#7c5cff" stroke="#161b33" strokeWidth="1.5" />
+                      <circle cx="630.0" cy="75.8" r="4" fill="#0d9488" stroke="#161b33" strokeWidth="1.5" />
+
+                      <line x1="400.8" y1="16" x2="400.8" y2="194" stroke="rgba(255,255,255,0.18)" strokeDasharray="3,3" />
+                      <circle cx="400.8" cy="57.3" r="4.5" fill="#7c5cff" stroke="#fff" strokeWidth="1.5" />
+                      <circle cx="400.8" cy="96.1" r="4.5" fill="#0d9488" stroke="#fff" strokeWidth="1.5" />
+                      <g transform="translate(346,4)">
+                        <rect x="0" y="0" width="110" height="42" rx="8" fill="#161b33" stroke="rgba(255,255,255,0.15)" />
+                        <text x="10" y="15" fill="rgba(255,255,255,0.6)" fontSize="9">Dia 9</text>
+                        <text x="10" y="28" fill="#fff" fontSize="10.5" fontWeight="600">Total: 430</text>
+                        <text x="10" y="39" fill="rgba(255,255,255,0.6)" fontSize="9">IA: 308 (72%)</text>
+                      </g>
+                    </svg>
+                    <div className="mt-2 flex flex-wrap gap-4">
+                      <span className="flex items-center gap-1.5 text-[11.5px] text-white/70">
+                        <span className="h-2.5 w-2.5 rounded-[3px]" style={{ background: "#7c5cff" }} />
+                        Conversaciones totales
+                      </span>
+                      <span className="flex items-center gap-1.5 text-[11.5px] text-white/70">
+                        <span className="h-2.5 w-2.5 rounded-[3px]" style={{ background: "#0d9488" }} />
+                        Resueltas por IA
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-[13px] font-semibold text-white">Mensajes por canal</p>
+                    <p className="mt-0.5 text-[11px] text-white/45">Distribucion del periodo</p>
+                    <div className="mt-3 flex items-center gap-4">
+                      <svg viewBox="0 0 180 180" className="h-[120px] w-[120px] shrink-0" role="img" aria-label="Grafico de dona: distribucion de mensajes por canal">
+                        <path d="M90.00,16.00 A74,74 0 1 1 80.73,163.42 L84.23,135.64 A46,46 0 1 0 90.00,44.00 Z" fill="#7c5cff" />
+                        <path d="M80.73,163.42 A74,74 0 0 1 16.58,99.27 L44.36,95.77 A46,46 0 0 0 84.23,135.64 Z" fill="#0d9488" />
+                        <path d="M16.58,99.27 A74,74 0 0 1 50.35,27.52 L65.35,51.16 A46,46 0 0 0 44.36,95.77 Z" fill="#d97706" />
+                        <path d="M50.35,27.52 A74,74 0 0 1 90.00,16.00 L90.00,44.00 A46,46 0 0 0 65.35,51.16 Z" fill="#2563eb" />
+                        <text x="90" y="86" textAnchor="middle" fontFamily="var(--font-heading)" fontWeight="700" fill="#fff" fontSize="17">100%</text>
+                        <text x="90" y="100" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="9">4 canales</text>
+                      </svg>
+                      <div className="flex flex-col gap-2">
+                        {[
+                          { name: "WhatsApp", pct: "52%", color: "#7c5cff" },
+                          { name: "Instagram", pct: "21%", color: "#0d9488" },
+                          { name: "Chat web", pct: "18%", color: "#d97706" },
+                          { name: "Otros", pct: "9%", color: "#2563eb" },
+                        ].map((c) => (
+                          <span key={c.name} className="flex items-center gap-2 text-[11.5px] text-white/75">
+                            <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: c.color }} />
+                            {c.name}
+                            <b className="ml-auto font-semibold text-white">{c.pct}</b>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.055] p-4">
+                  <p className="text-[13px] font-semibold text-white">Desempeno por agente (IA + humano)</p>
+                  <p className="mt-0.5 text-[11px] text-white/45">Conversaciones resueltas -- ultimos 14 dias</p>
+                  <svg viewBox="0 0 560 170" className="mt-2 h-[130px] w-full" role="img" aria-label="Grafico de barras: conversaciones resueltas por agente">
+                    <line x1="30" y1="146" x2="550" y2="146" stroke="rgba(255,255,255,0.09)" />
+                    <rect x="41.0" y="18.9" width="108.0" height="127.1" rx="6" fill="#7c5cff" />
+                    <rect x="171.0" y="64.4" width="108.0" height="81.6" rx="6" fill="#0d9488" />
+                    <rect x="301.0" y="75.9" width="108.0" height="70.1" rx="6" fill="#d97706" />
+                    <rect x="431.0" y="41.1" width="108.0" height="104.9" rx="6" fill="#2563eb" />
+                    <text x="95" y="160" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="10">Sofia IA</text>
+                    <text x="225" y="160" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="10">Agente Ana</text>
+                    <text x="355" y="160" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="10">Agente Luis</text>
+                    <text x="485" y="160" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="10">Bot Ventas</text>
+                    <g transform="translate(41,-8)">
+                      <rect x="0" y="0" width="108" height="38" rx="8" fill="#161b33" stroke="rgba(255,255,255,0.15)" />
+                      <text x="10" y="16" fill="#fff" fontSize="10.5" fontWeight="600">486 conversaciones</text>
+                      <text x="10" y="29" fill="rgba(255,255,255,0.6)" fontSize="9">Tiempo prom.: 28s</text>
+                    </g>
+                  </svg>
+
+                  <div className="mt-3 overflow-x-auto">
+                    <table className="w-full min-w-[420px] border-collapse text-[12px]">
+                      <thead>
+                        <tr>
+                          <th className="border-b border-white/10 px-2.5 pb-2 text-left text-[10.5px] font-medium uppercase tracking-wide text-white/45">Agente</th>
+                          <th className="border-b border-white/10 px-2.5 pb-2 text-left text-[10.5px] font-medium uppercase tracking-wide text-white/45">Conversaciones</th>
+                          <th className="border-b border-white/10 px-2.5 pb-2 text-left text-[10.5px] font-medium uppercase tracking-wide text-white/45">Tiempo prom.</th>
+                          <th className="border-b border-white/10 px-2.5 pb-2 text-left text-[10.5px] font-medium uppercase tracking-wide text-white/45">CSAT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { name: "Sofia", ia: true, color: "#7c5cff", conv: "486", time: "28s", csat: "4.9/5" },
+                          { name: "Bot Ventas", ia: true, color: "#2563eb", conv: "401", time: "35s", csat: "4.7/5" },
+                          { name: "Ana", ia: false, color: "#0d9488", conv: "312", time: "58s", csat: "4.8/5" },
+                          { name: "Luis", ia: false, color: "#d97706", conv: "268", time: "64s", csat: "4.6/5" },
+                        ].map((row) => (
+                          <tr key={row.name} className="border-b border-white/[0.06] last:border-0">
+                            <td className="px-2.5 py-2 text-white/85">
+                              <span className="mr-1.5 inline-block h-2 w-2 rounded-full" style={{ background: row.color }} />
+                              {row.name}
+                              {row.ia && (
+                                <span className="ml-2 rounded-full bg-[#e9e3ff] px-1.5 py-0.5 text-[9.5px] font-semibold text-navy">
+                                  IA
+                                </span>
+                              )}
+                            </td>
+                            <td className="px-2.5 py-2 text-white/85">{row.conv}</td>
+                            <td className="px-2.5 py-2 text-white/85">{row.time}</td>
+                            <td className="px-2.5 py-2 text-white/85">{row.csat}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <p className="mt-4 border-t border-white/10 pt-4 text-[10px] leading-relaxed text-[#8B90B8]">
+                  Vista ilustrativa -- no corresponde a datos reales de ningun cliente.
+                </p>
+              </div>
             </div>
           </div>
         </section>

@@ -65,6 +65,77 @@ body {
   box-shadow: 0 20px 36px -16px rgba(22, 27, 51, 0.22);
 }
 
+/* Tarjetas de feature "vivas": fondo propio con degradado + glow + marca de agua
+   del icono + hover mas notorio. Usadas en bloques de bento (Bajo el capo,
+   Reportes en tiempo real). Aprobado por mockup el 2026-09-17. */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #ffffff 0%, #f9f7ff 55%, #f0edfd 100%);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: -34px;
+  right: -34px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 76, 241, 0.18) 0%, rgba(108, 76, 241, 0) 72%);
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: transparent;
+  box-shadow: 0 28px 48px -18px rgba(108, 76, 241, 0.38), 0 10px 20px -8px rgba(22, 27, 51, 0.18);
+}
+.feature-card:hover::before {
+  transform: scale(1.15);
+}
+.feature-card-watermark {
+  position: absolute;
+  right: -8px;
+  bottom: -16px;
+  z-index: 0;
+  opacity: 0.06;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.feature-card:hover .feature-card-watermark {
+  transform: rotate(-4deg) scale(1.06);
+  opacity: 0.1;
+}
+.feature-card-content {
+  position: relative;
+  z-index: 1;
+}
+.feature-card-icon {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-violet) 100%);
+  box-shadow: 0 8px 16px -6px rgba(108, 76, 241, 0.5);
+  transition: transform 0.25s ease;
+}
+.feature-card:hover .feature-card-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+/* Dotgrid para fondos claros (puntos navy en vez de blancos) */
+.dotgrid-navy {
+  position: relative;
+}
+.dotgrid-navy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(22, 27, 51, 0.09) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
 /* Hover para chips/etiquetas con borde (canales, industrias) */
 .chip-hover {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;

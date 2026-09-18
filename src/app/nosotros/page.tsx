@@ -17,9 +17,6 @@ export default function NosotrosPage() {
       <main className="flex-1">
         {/* HERO */}
         <section className="dotgrid relative overflow-hidden px-6 py-24 text-center md:px-12">
-          <span className="mx-auto mb-5 inline-block w-fit rounded-full bg-amber-100 px-4 py-1.5 font-mono text-xs font-semibold text-amber-800">
-            BORRADOR · PENDIENTE VALIDAR
-          </span>
           <h1 className="mx-auto max-w-3xl font-heading text-4xl font-extrabold text-navy md:text-5xl">
             Simple para empezar. Imparable para escalar — y lo mismo aplica a cómo construimos esto.
           </h1>
