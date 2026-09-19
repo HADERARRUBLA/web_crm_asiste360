@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/links";
+import { buildWhatsAppLink, WHATSAPP_MESSAGES, GHL_BOOKING_URL } from "@/lib/links";
 import { ChannelIcon, type IconName } from "@/components/channel-icon";
 import { CHANNEL_TILES } from "@/lib/channels";
 import { TEAM_PROFILES } from "@/lib/team";
@@ -803,10 +803,15 @@ export default function HomePage() {
                         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover object-top"
                       />
-                      {member.slug === "sofi" && (
+                      {member.slug === "sofi" ? (
                         <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[10.5px] font-semibold text-teal-700">
                           <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
                           Pruébala en vivo
+                        </span>
+                      ) : (
+                        <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[10.5px] font-semibold text-violet">
+                          <span className="h-1.5 w-1.5 rounded-full bg-violet" />
+                          Agenda demo
                         </span>
                       )}
                     </div>
@@ -845,15 +850,18 @@ export default function HomePage() {
                       Ver perfil completo →
                     </Link>
                     <a
-                      href={buildWhatsAppLink(member.whatsapp)}
+                      href={member.slug === "sofi" ? buildWhatsAppLink(member.whatsapp) : GHL_BOOKING_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      data-analytics="cta_whatsapp_click"
+                      data-analytics={member.slug === "sofi" ? "cta_whatsapp_click" : "demo_booking_click"}
                       data-page-source={`home_equipo_${member.slug}`}
                       className="mt-2 block rounded-xl bg-gradient-to-br from-violet-2 to-violet px-4 py-2.5 text-center text-[12.5px] font-semibold text-white"
                     >
-                      {member.slug === "sofi" ? `Chatea en vivo con ${member.name} →` : `Contrata a ${member.name} hoy`}
+                      {member.slug === "sofi" ? `Chatea en vivo con ${member.name} →` : "Agenda una demo"}
                     </a>
+                    <p className="mt-1.5 text-center text-[10.5px] text-gray">
+                      {member.slug === "sofi" ? "30 días gratis, sin tarjeta" : "Se entrena a la medida de tu empresa"}
+                    </p>
                   </div>
                 </div>
               ))}

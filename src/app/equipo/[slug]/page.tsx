@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { buildWhatsAppLink } from "@/lib/links";
+import { buildWhatsAppLink, GHL_BOOKING_URL } from "@/lib/links";
 import { ChannelIcon } from "@/components/channel-icon";
 import { CHANNEL_TILES } from "@/lib/channels";
 import { TEAM_PROFILES, getTeamProfile, type CaseTag } from "@/lib/team";
@@ -63,6 +63,10 @@ export default async function EmpleadoIAPage({
   if (!member) notFound();
 
   const whatsappHref = buildWhatsAppLink(member.whatsapp);
+  const isSofi = member.slug === "sofi";
+  const ctaHref = isSofi ? whatsappHref : GHL_BOOKING_URL;
+  const ctaLabel = isSofi ? `Chatea en vivo con ${member.name}` : "Agenda una demo";
+  const ctaAnalytics = isSofi ? "cta_whatsapp_click" : "demo_booking_click";
 
   return (
     <>
@@ -124,14 +128,14 @@ export default async function EmpleadoIAPage({
               <p className="mt-3.5 max-w-xl text-[15px] leading-relaxed text-gray">{member.heroDescription}</p>
               <div className="mt-6 flex flex-wrap items-center gap-5">
                 <a
-                  href={whatsappHref}
+                  href={ctaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-analytics="cta_whatsapp_click"
+                  data-analytics={ctaAnalytics}
                   data-page-source={`equipo_${member.slug}_hero`}
                   className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-violet-2 to-violet px-6 py-3.5 text-sm font-semibold text-white"
                 >
-                  {member.slug === "sofi" ? `Chatea en vivo con ${member.name}` : `Contrata a ${member.name} hoy`}
+                  {ctaLabel}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
@@ -140,6 +144,11 @@ export default async function EmpleadoIAPage({
                   Ver cómo funciona ↓
                 </a>
               </div>
+              <p className="mt-3 max-w-md text-[12px] leading-relaxed text-gray">
+                {isSofi
+                  ? "30 días gratis, sin tarjeta."
+                  : "Se entrena a la medida de tu empresa -- conversemos sobre tu caso."}
+              </p>
             </div>
           </div>
         </section>
@@ -155,7 +164,7 @@ export default async function EmpleadoIAPage({
                 <p className="mt-2.5 font-heading text-[26px] font-extrabold text-navy">{stat.value}</p>
                 <p className="mt-0.5 text-[13px] leading-relaxed text-gray">
                   {stat.label}
-                  {stat.illustrative && <span className="font-medium text-violet-2"> · dato ilustrativo</span>}
+                  {stat.note && <span className="font-medium text-violet-2"> · {stat.note}</span>}
                 </p>
               </div>
             ))}
@@ -249,14 +258,14 @@ export default async function EmpleadoIAPage({
               <p className="mt-1.5 text-[13px] text-[#C9CCE5]">{member.tag}.</p>
             </div>
             <a
-              href={whatsappHref}
+              href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              data-analytics="cta_whatsapp_click"
+              data-analytics={ctaAnalytics}
               data-page-source={`equipo_${member.slug}_final`}
               className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-navy"
             >
-              {member.slug === "sofi" ? `Chatea en vivo con ${member.name}` : `Contrata a ${member.name} hoy`}
+              {ctaLabel}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>

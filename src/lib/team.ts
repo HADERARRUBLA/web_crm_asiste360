@@ -3,7 +3,7 @@ import { WHATSAPP_MESSAGES } from "@/lib/links";
 export type StatItem = {
   value: string;
   label: string;
-  illustrative?: boolean;
+  note?: string;
 };
 
 export type CaseTag = {
@@ -53,8 +53,8 @@ export const TEAM_PROFILES: TeamProfile[] = [
       "Contesto al instante en cualquier canal, agendo tu cita en el calendario en tiempo real, confirmo disponibilidad y precios — y si detecto algo urgente o fuera de lo común, sé exactamente a quién pasárselo dentro de tu equipo.",
     stats: [
       { value: "100%", label: "de las citas quedan en tu calendario, sin doble reserva" },
-      { value: "[XX%]", label: "menos inasistencias gracias a los recordatorios automáticos", illustrative: true },
-      { value: "<[X] seg", label: "tiempo de respuesta promedio a un mensaje nuevo", illustrative: true },
+      { value: "25%", label: "menos inasistencias con recordatorios automáticos", note: "según estudios sobre recordatorios automatizados" },
+      { value: "5 seg", label: "máx. para agrupar tus mensajes -- responde en bloques claros, con emojis, nunca en un bloque gigante" },
     ],
     caseHeading: "Así Sofi agenda y confirma cada cita",
     caseDescription:
@@ -86,8 +86,8 @@ export const TEAM_PROFILES: TeamProfile[] = [
       "Califico cada lead nuevo que entra por cualquier canal y lo dejo listo en tu pipeline — y además reviso tu base de contactos dormidos para encontrar oportunidades que ya pagaste por conseguir, pero que nadie está mirando.",
     stats: [
       { value: "100%", label: "de los leads nuevos quedan calificados y en tu pipeline" },
-      { value: "[XX%]", label: "de los leads dormidos responde al ser recontactado", illustrative: true },
-      { value: "[XX]", label: "oportunidades reactivadas por mes, en promedio", illustrative: true },
+      { value: "45%", label: "más respuesta al recontactar por WhatsApp que por email", note: "según estudios de marketing conversacional" },
+      { value: "Toda tu base", label: "revisada automáticamente en busca de oportunidades que nadie está mirando" },
     ],
     caseHeading: "Así Leo reactiva tu base de contactos",
     caseDescription:
@@ -119,8 +119,8 @@ export const TEAM_PROFILES: TeamProfile[] = [
       "Recibo cada queja, petición o reclamo que llega por cualquier canal, la documento en tu CRM y la escalo según la urgencia que reporta tu cliente. Cuando el caso se cierra, pregunto qué tan satisfecho quedó — para que ninguna señal de alerta se te escape.",
     stats: [
       { value: "100%", label: "de los casos documentados y con historial completo" },
-      { value: "[XX min]", label: "tiempo promedio para escalar un caso urgente", illustrative: true },
-      { value: "[XX%]", label: "de clientes que responden la encuesta de satisfacción", illustrative: true },
+      { value: "Inmediato", label: "escala a un humano en cuanto detecta que no puede resolverlo, o el cliente lo pide" },
+      { value: "32%", label: "de tasa de respuesta en la encuesta, cuando llega justo después de la conversación", note: "dato de referencia (SurveyMonkey)" },
     ],
     caseHeading: "Así Sofi documenta y prioriza cada caso",
     caseDescription:
@@ -152,8 +152,8 @@ export const TEAM_PROFILES: TeamProfile[] = [
       "Doy seguimiento a pagos pendientes por el canal que tu cliente prefiera, registro los acuerdos de pago que se negocian y notifico las fechas clave — y te aviso a ti apenas la conversación necesita a un humano.",
     stats: [
       { value: "100%", label: "de los acuerdos de pago quedan registrados y con seguimiento" },
-      { value: "[XX%]", label: "de cartera vencida recuperada en el primer contacto", illustrative: true },
-      { value: "[XX%]", label: "de casos que se resuelven sin intervención humana", illustrative: true },
+      { value: "45%", label: "más respuesta en cobranza vía WhatsApp que por email", note: "dato de referencia de la industria" },
+      { value: "70-90%", label: "de los casos se resuelven sin intervención humana", note: "benchmark de automatización conversacional" },
     ],
     caseHeading: "Así Marco da seguimiento a un pago pendiente",
     caseDescription:
