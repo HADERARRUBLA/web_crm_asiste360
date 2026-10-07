@@ -26,6 +26,7 @@ export const WHATSAPP_MESSAGES = {
   equipoLeo: "Vi a Leo (Leads y reactivación) en asiste360.com y quiero saber más",
   equipoClara: "Vi a Clara (PQR y satisfacción) en asiste360.com y quiero saber más",
   equipoMarco: "Vi a Marco (Cobranza y acuerdos) en asiste360.com y quiero saber más",
+  volantePromo: "Hola, vengo del volante de Asiste360 y quiero probar a Sofi gratis por 30 días",
 } as const;
 
 /** Eventos de analítica sugeridos por CTA (ver Fase 7) — nombre estándar GA4. */
