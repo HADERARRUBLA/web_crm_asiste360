@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/links";
 import { Reveal } from "@/components/reveal";
+import { ChannelIcon } from "@/components/channel-icon";
 
 export const metadata: Metadata = {
   title: "Prueba a Sof IA gratis 30 días",
@@ -23,6 +25,13 @@ const DOLORES = [
     title: "No tienes dónde ver todo junto",
     body: "Conversaciones, citas y clientes regados — sin un solo lugar para darles seguimiento.",
   },
+];
+
+const FLUJO_PASOS = [
+  { n: "1", title: "Contesta", body: "Responde al instante por WhatsApp, a cualquier hora del día." },
+  { n: "2", title: "Consulta tu calendario", body: "Revisa la disponibilidad real, sin doble reserva." },
+  { n: "3", title: "Agenda y confirma", body: "Deja la cita lista y programa el recordatorio automático." },
+  { n: "4", title: "Transfiere si hace falta", body: "Si detecta algo urgente, sabe a quién pasárselo." },
 ];
 
 const PASOS = [
@@ -77,6 +86,75 @@ function SofIA() {
   );
 }
 
+function SparkleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+      <path
+        d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"
+        stroke="#fff"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function CalendarCheckIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+      <rect x="4" y="5" width="16" height="15" rx="2" stroke="#fff" strokeWidth="1.5" />
+      <path d="M4 9h16" stroke="#fff" strokeWidth="1.5" />
+      <path d="M8 3v3M16 3v3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M9 14l2 2 4-4" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function FlowNode({
+  color,
+  label,
+  highlighted = false,
+  children,
+}: {
+  color: "teal" | "violet" | "blue";
+  label: string;
+  highlighted?: boolean;
+  children: ReactNode;
+}) {
+  const bg =
+    color === "teal"
+      ? "bg-teal-500"
+      : color === "violet"
+        ? "bg-gradient-to-br from-violet-2 to-violet"
+        : "bg-blue-600";
+  return (
+    <div className="flex flex-col items-center gap-2 px-4">
+      <div
+        className={`flex h-16 w-16 items-center justify-center rounded-2xl shadow-md ${bg} ${
+          highlighted ? "animate-pulse-ring" : ""
+        }`}
+      >
+        {children}
+      </div>
+      <span className="text-xs font-semibold text-navy">{label}</span>
+    </div>
+  );
+}
+
+function FlowArrow() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6 rotate-90 text-violet/50 sm:rotate-0" fill="none">
+      <path
+        d="M4 12h14M13 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default async function SofiPromoPage({
   searchParams,
 }: {
@@ -94,13 +172,45 @@ export default async function SofiPromoPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
       />
       <main className="flex-1 pb-24 md:pb-0">
-        {/* TOP BAR — solo marca, sin navegación, sin salidas */}
-        <div className="flex items-center justify-center gap-2 border-b border-line px-6 py-4">
-          <div className="relative h-7 w-7">
-            <Image src="/logo-orbit.png" alt="" fill className="object-contain" />
-            <Image src="/logo-mark.png" alt="" fill className="object-contain" />
-          </div>
-          <span className="font-heading text-sm font-bold text-navy">Asiste360</span>
+        {/* TOP BAR — solo marca, sin navegación, sin salidas. Logo grande con
+            la misma animación de cometa-en-el-aro ya aprobada en el sitio
+            (site-nav.tsx), aquí siempre activa en vez de solo al hover. */}
+        <div className="flex items-center justify-center gap-3 border-b border-line px-6 py-5">
+          <span className="relative inline-flex h-14 w-[72px] flex-none items-center justify-center">
+            <Image src="/logo-orbit.png" alt="" aria-hidden="true" fill sizes="72px" className="object-contain" />
+            <svg
+              viewBox="0 0 235 183"
+              className="absolute inset-0 h-full w-full"
+              style={{ overflow: "visible" }}
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="cometTailPromo" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#6C4CF1" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#6C4CF1" stopOpacity="0.95" />
+                </linearGradient>
+              </defs>
+              <g transform="rotate(-18 117 98)">
+                <path id="orbitTrackPromo" d="M217,98 A100,52 0 1 1 17,98 A100,52 0 1 1 217,98" fill="none" />
+                <g>
+                  <path d="M10,0 L2,-4 C-10,-3 -22,-1 -22,0 C-22,1 -10,3 2,4 Z" fill="url(#cometTailPromo)" />
+                  <circle cx="10" cy="0" r="2.4" fill="#ffffff" opacity="0.9" />
+                  <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
+                    <mpath href="#orbitTrackPromo" xlinkHref="#orbitTrackPromo" />
+                  </animateMotion>
+                </g>
+              </g>
+            </svg>
+            <Image
+              src="/logo-mark.png"
+              alt="Asiste360"
+              fill
+              sizes="72px"
+              priority
+              className="relative object-contain"
+            />
+          </span>
+          <span className="font-heading text-base font-bold text-navy">Asiste360</span>
         </div>
 
         {/* HERO */}
@@ -151,6 +261,62 @@ export default async function SofiPromoPage({
             >
               30 días gratis · sin tarjeta · cancelas cuando quieras
             </p>
+          </div>
+        </section>
+
+        {/* ASI TRABAJA SOF IA — diagrama de flujo, nodo a nodo al hacer scroll */}
+        <section className="px-6 py-20 md:px-12">
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal>
+              <span className="mx-auto mb-4 inline-block w-fit rounded-full bg-violet/10 px-4 py-1.5 font-mono text-xs font-semibold text-violet">
+                Así funciona
+              </span>
+            </Reveal>
+            <Reveal delayMs={60}>
+              <h2 className="font-heading text-2xl font-bold text-navy md:text-3xl">
+                Así trabaja <SofIA /> en cada conversación
+              </h2>
+            </Reveal>
+
+            <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-0">
+              <Reveal delayMs={150}>
+                <FlowNode color="teal" label="WhatsApp">
+                  <ChannelIcon name="whatsapp" size={28} />
+                </FlowNode>
+              </Reveal>
+              <Reveal delayMs={320}>
+                <FlowArrow />
+              </Reveal>
+              <Reveal delayMs={420}>
+                <FlowNode color="violet" label="Sof IA" highlighted>
+                  <SparkleIcon />
+                </FlowNode>
+              </Reveal>
+              <Reveal delayMs={600}>
+                <FlowArrow />
+              </Reveal>
+              <Reveal delayMs={700}>
+                <FlowNode color="blue" label="Agenda / CRM">
+                  <CalendarCheckIcon />
+                </FlowNode>
+              </Reveal>
+            </div>
+
+            <div className="mt-14 grid gap-5 text-left sm:grid-cols-2">
+              {FLUJO_PASOS.map((step, i) => (
+                <Reveal key={step.n} delayMs={850 + i * 90}>
+                  <div className="flex items-start gap-3 rounded-2xl bg-blue-tint p-4">
+                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-violet text-xs font-bold text-white">
+                      {step.n}
+                    </span>
+                    <div>
+                      <p className="font-semibold text-navy">{step.title}</p>
+                      <p className="mt-0.5 text-sm text-gray">{step.body}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -228,12 +394,12 @@ export default async function SofiPromoPage({
           </div>
         </section>
 
-        {/* COMO FUNCIONA */}
+        {/* COMO FUNCIONA LA PRUEBA */}
         <section className="bg-blue-tint px-6 py-20 md:px-12">
           <div className="mx-auto max-w-5xl">
             <Reveal>
               <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
-                Así de simple
+                Así de simple para empezar
               </h2>
             </Reveal>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
