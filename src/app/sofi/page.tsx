@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/links";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Prueba a Sofi gratis 30 días",
+  title: "Prueba a Sof IA gratis 30 días",
   description:
-    "Sofi responde por ti en WhatsApp, agenda tus citas y nunca deja a un cliente esperando. Pruébala gratis 30 días, sin tarjeta.",
+    "Sof IA responde por ti en WhatsApp, agenda tus citas y nunca deja a un cliente esperando. Pruébala gratis 30 días, sin tarjeta.",
   robots: { index: false, follow: false },
 };
 
@@ -16,7 +17,7 @@ const DOLORES = [
   },
   {
     title: "Fuera de horario, nadie responde",
-    body: "En la noche, el fin de semana, en la madrugada — Sofi sigue ahí, contestando por ti.",
+    body: "En la noche, el fin de semana, en la madrugada — Sof IA sigue ahí, contestando por ti.",
   },
   {
     title: "No tienes dónde ver todo junto",
@@ -25,7 +26,7 @@ const DOLORES = [
 ];
 
 const PASOS = [
-  { n: "1", title: "Escríbele a Sofi", body: "Le cuentas en qué negocio estás y qué necesitas." },
+  { n: "1", title: "Escríbele a Sof IA", body: "Le cuentas en qué negocio estás y qué necesitas." },
   {
     n: "2",
     title: "Ella valida si aplicas",
@@ -42,7 +43,7 @@ const FAQ = [
   { q: "¿Necesito tarjeta para probarla?", a: "No — 30 días gratis, sin tarjeta." },
   {
     q: "¿Cualquier negocio aplica?",
-    a: "La mayoría de negocios pequeños y medianos aplican. Sofi lo valida contigo en la conversación — no tarda más de unos minutos.",
+    a: "La mayoría de negocios pequeños y medianos aplican. Sof IA lo valida contigo en la conversación — no tarda más de unos minutos.",
   },
   {
     q: "¿Qué pasa si no me sirve?",
@@ -63,6 +64,18 @@ const FAQ_JSON_LD = {
     acceptedAnswer: { "@type": "Answer", text: item.a },
   })),
 };
+
+/** "Sof" + "IA" en degradado de marca — el guiño Sofía/IA pedido para esta landing. */
+function SofIA() {
+  return (
+    <>
+      Sof
+      <span className="bg-gradient-to-r from-violet-2 to-violet bg-clip-text text-transparent">
+        IA
+      </span>
+    </>
+  );
+}
 
 export default async function SofiPromoPage({
   searchParams,
@@ -92,100 +105,146 @@ export default async function SofiPromoPage({
 
         {/* HERO */}
         <section className="dotgrid relative overflow-hidden px-6 py-16 text-center md:px-12 md:py-24">
-          <span className="mx-auto mb-5 inline-block w-fit rounded-full bg-violet/10 px-4 py-1.5 font-mono text-xs font-semibold text-violet">
-            Oferta por tiempo limitado
-          </span>
-          <h1 className="mx-auto max-w-2xl font-heading text-4xl font-extrabold text-navy md:text-5xl">
-            Sofi contesta por ti, al instante — pruébala gratis 30 días
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray">
-            Es tu recepcionista con IA en WhatsApp: responde, agenda tu cita y nunca deja a un cliente
-            esperando. Sin tarjeta, sin compromiso.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <a
-              href={ctaHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-analytics="cta_whatsapp_click"
-              data-page-source="promo_volante_hero"
-              className="rounded-xl bg-gradient-to-br from-violet-2 to-violet px-8 py-4 text-base font-semibold text-white shadow-lg"
+          {/* blobs de fondo, puramente decorativos */}
+          <div
+            aria-hidden
+            className="animate-blob pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-violet/20 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="animate-blob pointer-events-none absolute -right-20 top-32 h-80 w-80 rounded-full bg-blue-tint blur-3xl"
+            style={{ animationDelay: "-5s" }}
+          />
+
+          <div className="relative">
+            <span className="animate-fade-up mx-auto mb-5 inline-block w-fit rounded-full bg-violet/10 px-4 py-1.5 font-mono text-xs font-semibold text-violet">
+              Oferta por tiempo limitado
+            </span>
+            <h1
+              className="animate-fade-up mx-auto max-w-2xl font-heading text-4xl font-extrabold text-navy md:text-5xl"
+              style={{ animationDelay: "0.08s" }}
             >
-              Probar a Sofi gratis por WhatsApp
-            </a>
+              <SofIA /> contesta por ti, al instante — pruébala gratis 30 días
+            </h1>
+            <p
+              className="animate-fade-up mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray"
+              style={{ animationDelay: "0.16s" }}
+            >
+              Es tu recepcionista con inteligencia artificial en WhatsApp: responde, agenda tu cita y
+              nunca deja a un cliente esperando. Sin tarjeta, sin compromiso.
+            </p>
+            <div className="animate-fade-up mt-8 flex justify-center" style={{ animationDelay: "0.24s" }}>
+              <a
+                href={ctaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-analytics="cta_whatsapp_click"
+                data-page-source="promo_volante_hero"
+                className="animate-pulse-ring rounded-xl bg-gradient-to-br from-violet-2 to-violet px-8 py-4 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105"
+              >
+                Probar a Sof IA gratis por WhatsApp
+              </a>
+            </div>
+            <p
+              className="animate-fade-up mt-4 text-xs text-gray"
+              style={{ animationDelay: "0.3s" }}
+            >
+              30 días gratis · sin tarjeta · cancelas cuando quieras
+            </p>
           </div>
-          <p className="mt-4 text-xs text-gray">30 días gratis · sin tarjeta · cancelas cuando quieras</p>
         </section>
 
         {/* DOLORES */}
         <section className="bg-blue-tint px-6 py-16 md:px-12">
           <div className="mx-auto max-w-5xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
-              ¿Te suena familiar?
-            </h2>
+            <Reveal>
+              <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
+                ¿Te suena familiar?
+              </h2>
+            </Reveal>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {DOLORES.map((d) => (
-                <div key={d.title} className="rounded-2xl bg-white p-6">
-                  <h3 className="font-heading text-base font-bold text-navy">{d.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray">{d.body}</p>
-                </div>
+              {DOLORES.map((d, i) => (
+                <Reveal key={d.title} delayMs={i * 100}>
+                  <div className="h-full rounded-2xl bg-white p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <h3 className="font-heading text-base font-bold text-navy">{d.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-gray">{d.body}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* SOFI EN ACCION */}
+        {/* SOF IA EN ACCION */}
         <section className="px-6 py-20 md:px-12">
           <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[220px_1fr]">
-            <div className="relative mx-auto h-[220px] w-[220px] overflow-hidden rounded-3xl bg-blue-tint">
-              <Image src="/team/ana.jpg" alt="Sofi" fill className="object-cover" />
-            </div>
-            <div>
-              <h2 className="font-heading text-2xl font-bold text-navy md:text-3xl">
-                Conoce a Sofi, tu recepcionista con IA
-              </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-gray">
-                Contesta al instante en WhatsApp, agenda tu cita en el calendario en tiempo real,
-                confirma disponibilidad y precios — y si detecta algo urgente, sabe exactamente a
-                quién pasárselo.
-              </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                <div className="glass-light rounded-2xl p-4 text-center">
-                  <p className="font-heading text-2xl font-extrabold text-violet">100%</p>
-                  <p className="mt-1 text-xs leading-snug text-gray">
-                    de las citas quedan en tu calendario, sin doble reserva
-                  </p>
+            <Reveal>
+              <div className="relative mx-auto h-[220px] w-[220px]">
+                <div className="animate-pulse-ring absolute inset-0 rounded-3xl" />
+                <div className="animate-float-y relative h-full w-full overflow-hidden rounded-3xl bg-blue-tint">
+                  <Image src="/team/ana.jpg" alt="Sof IA" fill className="object-cover" />
                 </div>
-                <div className="glass-light rounded-2xl p-4 text-center">
-                  <p className="font-heading text-2xl font-extrabold text-violet">25%</p>
-                  <p className="mt-1 text-xs leading-snug text-gray">
-                    menos inasistencias con recordatorios automáticos
-                  </p>
-                </div>
-                <div className="glass-light rounded-2xl p-4 text-center">
-                  <p className="font-heading text-2xl font-extrabold text-violet">5 seg</p>
-                  <p className="mt-1 text-xs leading-snug text-gray">
-                    máx. para agrupar tus mensajes y responder en bloques claros
-                  </p>
+                <span className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-navy shadow">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-500 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-500" />
+                  </span>
+                  En línea
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delayMs={100}>
+              <div>
+                <h2 className="font-heading text-2xl font-bold text-navy md:text-3xl">
+                  Conoce a <SofIA />, tu recepcionista con IA
+                </h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-gray">
+                  Contesta al instante en WhatsApp, agenda tu cita en el calendario en tiempo real,
+                  confirma disponibilidad y precios — y si detecta algo urgente, sabe exactamente a
+                  quién pasárselo.
+                </p>
+                <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                  <div className="glass-light rounded-2xl p-4 text-center transition-transform duration-300 hover:-translate-y-1">
+                    <p className="font-heading text-2xl font-extrabold text-violet">100%</p>
+                    <p className="mt-1 text-xs leading-snug text-gray">
+                      de las citas quedan en tu calendario, sin doble reserva
+                    </p>
+                  </div>
+                  <div className="glass-light rounded-2xl p-4 text-center transition-transform duration-300 hover:-translate-y-1">
+                    <p className="font-heading text-2xl font-extrabold text-violet">25%</p>
+                    <p className="mt-1 text-xs leading-snug text-gray">
+                      menos inasistencias con recordatorios automáticos
+                    </p>
+                  </div>
+                  <div className="glass-light rounded-2xl p-4 text-center transition-transform duration-300 hover:-translate-y-1">
+                    <p className="font-heading text-2xl font-extrabold text-violet">5 seg</p>
+                    <p className="mt-1 text-xs leading-snug text-gray">
+                      máx. para agrupar tus mensajes y responder en bloques claros
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* COMO FUNCIONA */}
         <section className="bg-blue-tint px-6 py-20 md:px-12">
           <div className="mx-auto max-w-5xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
-              Así de simple
-            </h2>
+            <Reveal>
+              <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
+                Así de simple
+              </h2>
+            </Reveal>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {PASOS.map((step) => (
-                <div key={step.n} className="rounded-2xl bg-white p-6">
-                  <span className="font-heading text-3xl font-extrabold text-violet">{step.n}</span>
-                  <h3 className="mt-3 font-heading text-base font-bold text-navy">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray">{step.body}</p>
-                </div>
+              {PASOS.map((step, i) => (
+                <Reveal key={step.n} delayMs={i * 100}>
+                  <div className="h-full rounded-2xl bg-white p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <span className="font-heading text-3xl font-extrabold text-violet">{step.n}</span>
+                    <h3 className="mt-3 font-heading text-base font-bold text-navy">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-gray">{step.body}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -201,41 +260,47 @@ export default async function SofiPromoPage({
         {/* FAQ */}
         <section className="bg-blue-tint px-6 py-20 md:px-12">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
-              Preguntas frecuentes
-            </h2>
+            <Reveal>
+              <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
+                Preguntas frecuentes
+              </h2>
+            </Reveal>
             <div className="mt-10 space-y-4">
-              {FAQ.map((item) => (
-                <div key={item.q} className="rounded-2xl bg-white p-6">
-                  <p className="font-semibold text-navy">{item.q}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-gray">{item.a}</p>
-                </div>
+              {FAQ.map((item, i) => (
+                <Reveal key={item.q} delayMs={i * 70}>
+                  <div className="rounded-2xl bg-white p-6">
+                    <p className="font-semibold text-navy">{item.q}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-gray">{item.a}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
         {/* CTA FINAL */}
-        <section className="dotgrid relative mx-6 my-20 overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center md:mx-12">
-          <div className="relative">
-            <h2 className="font-heading text-3xl font-bold text-white">
-              Dale a Sofi 5 minutos de tu tiempo
-            </h2>
-            <p className="mt-3 text-sm text-[#C9CCE5]">30 días gratis, sin tarjeta, sin compromiso.</p>
-            <div className="mt-7 flex justify-center">
-              <a
-                href={ctaHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics="cta_whatsapp_click"
-                data-page-source="promo_volante_cta_final"
-                className="rounded-xl bg-white px-8 py-4 font-semibold text-navy"
-              >
-                Probar a Sofi gratis por WhatsApp
-              </a>
+        <Reveal className="mx-6 my-20 md:mx-12">
+          <section className="dotgrid relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center">
+            <div className="relative">
+              <h2 className="font-heading text-3xl font-bold text-white">
+                Dale a <SofIA /> 5 minutos de tu tiempo
+              </h2>
+              <p className="mt-3 text-sm text-[#C9CCE5]">30 días gratis, sin tarjeta, sin compromiso.</p>
+              <div className="mt-7 flex justify-center">
+                <a
+                  href={ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-analytics="cta_whatsapp_click"
+                  data-page-source="promo_volante_cta_final"
+                  className="rounded-xl bg-white px-8 py-4 font-semibold text-navy transition-transform duration-200 hover:scale-105"
+                >
+                  Probar a Sof IA gratis por WhatsApp
+                </a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Reveal>
 
         {/* FOOTER MINIMO — sin navegación de salida, solo legal */}
         <footer className="border-t border-line px-6 py-8 text-center">
@@ -262,7 +327,7 @@ export default async function SofiPromoPage({
           data-page-source="promo_volante_sticky"
           className="block rounded-xl bg-gradient-to-br from-violet-2 to-violet px-6 py-3.5 text-center text-sm font-semibold text-white"
         >
-          Probar a Sofi gratis por WhatsApp
+          Probar a Sof IA gratis por WhatsApp
         </a>
       </div>
     </>

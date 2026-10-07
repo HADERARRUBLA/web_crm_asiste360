@@ -271,3 +271,56 @@ body {
 .dot-bounce {
   animation: dot-bounce 1s ease-in-out infinite;
 }
+
+/* --- Landing de campaña (/sofi) — scroll-reveal, blobs y glow de CTA ---
+   Aditivo: no modifica ninguna clase existente. */
+
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(24px, -28px) scale(1.08); }
+  66% { transform: translate(-18px, 18px) scale(0.95); }
+}
+.animate-blob {
+  animation: blob-drift 11s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(108, 76, 241, 0.45); }
+  70% { box-shadow: 0 0 0 16px rgba(108, 76, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(108, 76, 241, 0); }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s ease both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-pulse-ring,
+  .animate-fade-up,
+  .animate-float-y {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
