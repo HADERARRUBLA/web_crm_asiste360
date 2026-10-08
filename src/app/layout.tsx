@@ -84,12 +84,12 @@ export default function RootLayout({
           })(window, document, "clarity", "script", "yujwleesck");`}
         </Script>
         {/* Google Analytics 4 — trafico y conversiones (ver /legal/cookies) */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-1N7J5F8P45" strategy="afterInteractive" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-T8E3Z9NR3Y" strategy="afterInteractive" />
         <Script id="ga4-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-1N7J5F8P45');`}
+            gtag('config', 'G-T8E3Z9NR3Y');`}
         </Script>
         {children}
       </body>
