@@ -24,14 +24,9 @@ export function LegalLayout({
       <main className="flex-1">
         <section className="border-b border-line bg-blue-tint px-6 py-14 md:px-12">
           <div className="mx-auto max-w-3xl">
-            <span className="mb-4 inline-block w-fit rounded-full bg-amber-100 px-3 py-1 font-mono text-[11px] font-semibold text-amber-800">
-              BORRADOR · PENDIENTE REVISIÓN LEGAL
-            </span>
             <h1 className="font-heading text-3xl font-extrabold text-navy md:text-4xl">{title}</h1>
             <p className="mt-3 text-sm text-gray">
-              H&amp;S Soluciones y Servicios Integrales (NIT 900.413.035) — Medellín, Colombia. Este
-              contenido es un borrador de trabajo, aún no revisado por un abogado ni publicado
-              oficialmente.
+              H&amp;S Soluciones y Servicios Integrales (NIT 900.413.035) — Medellín, Colombia.
             </p>
             <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
               {LEGAL_LINKS.map((link) => (
