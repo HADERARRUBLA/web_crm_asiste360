@@ -357,3 +357,20 @@ body {
     animation: none !important;
   }
 }
+
+/* --- Landing /sofi (v3) — balanceo continuo de los chips de dolores ---
+   Aditivo: no modifica ninguna clase existente. */
+
+@keyframes chip-sway {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-4px) rotate(1deg); }
+}
+.chip-sway {
+  animation: chip-sway var(--sway-dur, 4s) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-sway {
+    animation: none !important;
+  }
+}

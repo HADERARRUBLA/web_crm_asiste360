@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/links";
 import { Reveal } from "@/components/reveal";
@@ -11,13 +12,17 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const DOLORES = [
-  { label: "Sin respuesta a tiempo", rotate: "-rotate-2" },
-  { label: "Fuera de horario, nadie contesta", rotate: "rotate-1" },
-  { label: "Varios canales, todo disperso", rotate: "-rotate-1" },
-  { label: "No hay un solo lugar para verlo todo", rotate: "rotate-2" },
-  { label: "No te alcanza el tiempo", rotate: "-rotate-2" },
-  { label: "Cada cliente perdido es plata que se va", rotate: "rotate-1" },
+const DOLORES: { label: string; rotate: string; tone: "amber" | "rose"; sway: number }[] = [
+  { label: "Sin respuesta a tiempo", rotate: "-rotate-2", tone: "amber", sway: 3.6 },
+  { label: "Fuera de horario, nadie contesta", rotate: "rotate-1", tone: "amber", sway: 4.1 },
+  { label: "Varios canales, todo disperso", rotate: "-rotate-1", tone: "amber", sway: 3.9 },
+  { label: "No hay un solo lugar para verlo todo", rotate: "rotate-2", tone: "amber", sway: 4.4 },
+  { label: "No te alcanza el tiempo", rotate: "-rotate-2", tone: "amber", sway: 3.7 },
+  { label: "Se te cruzan las citas o se te olvida confirmar", rotate: "rotate-1", tone: "amber", sway: 4.2 },
+  { label: "Clientes que no llegan, sin que nadie les recuerde", rotate: "-rotate-1", tone: "amber", sway: 3.8 },
+  { label: "Vives pendiente del celular todo el día", rotate: "rotate-2", tone: "amber", sway: 4.0 },
+  { label: "Contratar a alguien solo para contestar sale caro", rotate: "-rotate-2", tone: "rose", sway: 4.3 },
+  { label: "Cada cliente perdido es plata que se va", rotate: "rotate-1", tone: "rose", sway: 3.9 },
 ];
 
 const CHANNELS_ENTRADA: { name: string; icon: IconName; color: string }[] = [
@@ -238,15 +243,32 @@ export default async function SofiPromoPage({
         </section>
 
         {/* DOLORES — chips dispersos, para identificarnos con el problema antes de mostrar la solución */}
-        <section className="bg-blue-tint px-6 py-16 md:px-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <h2 className="font-heading text-2xl font-bold text-navy md:text-3xl">¿Te suena familiar?</h2>
+        <section className="bg-blue-tint px-6 py-20 md:px-12">
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal className="reveal-pop">
+              <span className="mx-auto mb-4 inline-block w-fit rounded-full bg-rose-100 px-4 py-1.5 font-mono text-xs font-semibold text-rose-700">
+                El problema de todos los días
+              </span>
             </Reveal>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Reveal delayMs={60}>
+              <h2 className="font-heading text-3xl font-extrabold text-navy md:text-4xl">¿Te suena familiar?</h2>
+            </Reveal>
+            <Reveal delayMs={120}>
+              <p className="mx-auto mt-3 max-w-xl text-[15px] text-gray">
+                Esto es lo que le pasa, todos los días, a un negocio que atiende solo.
+              </p>
+            </Reveal>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
               {DOLORES.map((d, i) => (
                 <Reveal key={d.label} delayMs={i * 90} className={`reveal-pop ${d.rotate}`}>
-                  <span className="inline-block rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm">
+                  <span
+                    className={`chip-sway inline-block rounded-xl border-2 px-5 py-3 text-sm font-semibold shadow-sm sm:text-base ${
+                      d.tone === "rose"
+                        ? "border-rose-300 bg-rose-50 text-rose-800"
+                        : "border-amber-300 bg-amber-50 text-amber-900"
+                    }`}
+                    style={{ "--sway-dur": `${d.sway}s` } as CSSProperties}
+                  >
                     {d.label}
                   </span>
                 </Reveal>
