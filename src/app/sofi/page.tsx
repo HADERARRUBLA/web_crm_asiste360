@@ -124,14 +124,16 @@ function ChevronRight({ className = "h-4 w-4 flex-none text-violet/60" }: { clas
 function ChannelBadge({ name, icon, color, delayMs }: { name: string; icon: IconName; color: string; delayMs: number }) {
   return (
     <Reveal delayMs={delayMs} className="reveal-pop">
-      <div className="flex flex-col items-center gap-2">
+      {/* Apilado (icono sobre texto) en móvil; en fila (icono junto al texto) en la
+          columna vertical de escritorio — ver sección "ASI APARECE SOF IA". */}
+      <div className="flex flex-col items-center gap-2 md:flex-row md:gap-3">
         <div
-          className="flex h-12 w-12 items-center justify-center rounded-xl shadow-md sm:h-14 sm:w-14"
+          className="flex h-12 w-12 flex-none items-center justify-center rounded-xl shadow-md sm:h-14 sm:w-14"
           style={{ backgroundColor: color }}
         >
           <ChannelIcon name={icon} size={24} />
         </div>
-        <span className="text-[11px] font-semibold text-navy">{name}</span>
+        <span className="text-[11px] font-semibold text-navy sm:text-xs md:text-sm">{name}</span>
       </div>
     </Reveal>
   );
@@ -277,9 +279,11 @@ export default async function SofiPromoPage({
           </div>
         </section>
 
-        {/* ASI APARECE SOF IA + DIAGRAMA DE FLUJO */}
+        {/* ASI APARECE SOF IA + DIAGRAMA DE FLUJO — 3 columnas en escritorio:
+            canales (vertical, izquierda) · Sof IA (centro) · acciones (vertical, derecha).
+            En móvil se apila: canales en fila, Sof IA, acciones en columna. */}
         <section className="px-6 py-20 md:px-12">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto max-w-5xl text-center">
             <Reveal>
               <p className="mx-auto max-w-md text-[15px] leading-relaxed text-gray">
                 ¿Y si una sola persona —disponible 24/7, en todos tus canales— pudiera con todo eso?
@@ -288,65 +292,67 @@ export default async function SofiPromoPage({
 
             <Reveal delayMs={120}>
               <p className="mt-10 font-mono text-xs font-semibold uppercase tracking-wide text-violet">
-                Un solo lugar para todos tus canales
+                Un solo lugar para todos tus canales — y responde en segundos
               </p>
             </Reveal>
 
-            {/* Canales → Sof IA, recorrido horizontal (en móvil se apila) */}
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row md:gap-5">
-              <div className="flex justify-center gap-6 sm:gap-8">
+            <div className="mt-10 flex flex-col items-center gap-12 md:flex-row md:items-stretch md:justify-center md:gap-0">
+              {/* CANALES — columna vertical a la izquierda en escritorio */}
+              <div className="flex flex-row flex-wrap items-center justify-center gap-6 sm:gap-8 md:flex-col md:flex-nowrap md:items-end md:justify-between md:gap-0 md:pr-2">
                 {CHANNELS_ENTRADA.map((ch, i) => (
-                  <ChannelBadge key={ch.name} name={ch.name} icon={ch.icon} color={ch.color} delayMs={220 + i * 100} />
+                  <ChannelBadge key={ch.name} name={ch.name} icon={ch.icon} color={ch.color} delayMs={200 + i * 100} />
                 ))}
               </div>
 
-              <div className="h-10 w-20 md:h-16 md:w-24">
-                <svg viewBox="0 0 160 60" className="h-full w-full" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M0,8 L135,28" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
-                  <path d="M0,24 L136,29" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
-                  <path d="M0,38 L136,31" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
-                  <path d="M0,53 L135,33" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
+              {/* Conector canales → Sof IA (solo escritorio) */}
+              <div className="hidden w-16 md:block lg:w-20">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full" aria-hidden="true">
+                  <path d="M0,12 C55,12 45,50 100,50" className="flow-line" stroke="#6C4CF1" strokeWidth="1.6" fill="none" opacity="0.45" />
+                  <path d="M0,37 C55,37 45,50 100,50" className="flow-line" stroke="#6C4CF1" strokeWidth="1.6" fill="none" opacity="0.45" />
+                  <path d="M0,63 C55,63 45,50 100,50" className="flow-line" stroke="#6C4CF1" strokeWidth="1.6" fill="none" opacity="0.45" />
+                  <path d="M0,88 C55,88 45,50 100,50" className="flow-line" stroke="#6C4CF1" strokeWidth="1.6" fill="none" opacity="0.45" />
                 </svg>
               </div>
 
-              <Reveal delayMs={700} className="reveal-pop">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24">
-                    <div className="animate-pulse-ring absolute inset-0 rounded-full" />
-                    <div className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-violet-2 to-violet shadow-lg">
-                      <SparkleIcon size={32} />
-                    </div>
+              {/* SOF IA — al centro */}
+              <Reveal delayMs={650} className="reveal-pop flex flex-col items-center justify-center gap-3 md:px-4">
+                <div className="relative h-24 w-24 sm:h-28 sm:w-28">
+                  <div className="animate-pulse-ring absolute inset-0 rounded-full" />
+                  <div className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-violet-2 to-violet shadow-lg">
+                    <SparkleIcon size={36} />
                   </div>
-                  <p className="whitespace-nowrap font-heading text-base font-bold text-navy sm:text-lg">
-                    Así aparece <SofIA />
-                  </p>
                 </div>
+                <p className="whitespace-nowrap font-heading text-base font-bold text-navy sm:text-lg">
+                  Así aparece <SofIA />
+                </p>
               </Reveal>
-            </div>
 
-            {/* Cadena de acciones, recorrido vertical, en ciclo continuo */}
-            <Reveal delayMs={850}>
-              <p className="mt-14 font-mono text-xs font-semibold uppercase tracking-wide text-violet">
-                Y en segundos
-              </p>
-            </Reveal>
-            <div className="relative mx-auto mt-6 flex w-full max-w-[230px] flex-col items-center">
-              <div className="action-rail absolute left-1/2 top-3 bottom-3 w-[3px] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true" />
-              {ACCIONES.map((accion, i) => (
-                <div key={accion} className="relative z-10 flex flex-col items-center">
-                  <Reveal delayMs={900 + i * 100} className="reveal-pop w-full">
-                    <span
-                      className="action-pill block w-full rounded-full bg-navy px-5 py-2.5 text-center text-xs font-semibold text-white shadow-sm sm:text-sm"
-                      style={{ "--pulse-delay": `${i * 0.5}s` } as CSSProperties}
-                    >
-                      {accion}
-                    </span>
-                  </Reveal>
-                  {i < ACCIONES.length - 1 && (
-                    <ChevronRight className="my-1 h-4 w-4 flex-none rotate-90 text-violet/60" />
-                  )}
-                </div>
-              ))}
+              {/* Conector Sof IA → acciones (solo escritorio) */}
+              <div className="hidden w-16 md:block lg:w-20">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full" aria-hidden="true">
+                  <path d="M0,50 C45,50 55,14 100,14" className="flow-line" stroke="#6C4CF1" strokeWidth="2.2" fill="none" opacity="0.6" />
+                </svg>
+              </div>
+
+              {/* ACCIONES — columna vertical a la derecha, con riel de luz en ciclo */}
+              <div className="relative flex flex-col items-center gap-3 md:pl-2">
+                <div className="action-rail absolute left-1/2 top-3 bottom-3 w-[3px] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true" />
+                {ACCIONES.map((accion, i) => (
+                  <div key={accion} className="relative z-10 flex flex-col items-center">
+                    <Reveal delayMs={900 + i * 100} className="reveal-pop w-full">
+                      <span
+                        className="action-pill block w-[128px] rounded-full bg-navy px-5 py-2.5 text-center text-xs font-semibold text-white shadow-sm sm:text-sm"
+                        style={{ "--pulse-delay": `${i * 0.5}s` } as CSSProperties}
+                      >
+                        {accion}
+                      </span>
+                    </Reveal>
+                    {i < ACCIONES.length - 1 && (
+                      <ChevronRight className="my-1 h-4 w-4 flex-none rotate-90 text-violet/60" />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
