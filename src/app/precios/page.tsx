@@ -182,13 +182,13 @@ const PRODUCT_JSON_LD = {
   operatingSystem: "Web",
   description:
     "CRM conversacional multicanal con IA que centraliza WhatsApp, Instagram, Facebook y más — pipeline de ventas, calendario, tareas y campañas en un solo lugar.",
-  url: "https://asiste360.com/precios",
+  url: "https://web.asiste360.com/precios",
   offers: PLANS.filter((plan) => plan.id !== "enterprise").map((plan) => ({
     "@type": "Offer",
     name: `Asiste360 ${plan.name}`,
     price: plan.price.replace(/[^0-9.]/g, ""),
     priceCurrency: "USD",
-    url: "https://asiste360.com/precios",
+    url: "https://web.asiste360.com/precios",
     description: `${plan.channels} canales · ${plan.users} usuarios incluidos · ${plan.crm}`,
   })),
 };

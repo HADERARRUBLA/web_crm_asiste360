@@ -28,6 +28,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Amazonbot", allow: "/" },
       { userAgent: "meta-externalagent", allow: "/" },
     ],
-    sitemap: "https://asiste360.com/sitemap.xml",
+    sitemap: "https://web.asiste360.com/sitemap.xml",
   };
 }

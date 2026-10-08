@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { TEAM_PROFILES } from "@/lib/team";
 
-const BASE_URL = "https://asiste360.com";
+const BASE_URL = "https://web.asiste360.com";
 
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },

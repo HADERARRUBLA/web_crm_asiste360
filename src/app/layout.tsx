@@ -26,8 +26,8 @@ const ORGANIZATION_JSON_LD = {
   "@type": "Organization",
   name: "Asiste360",
   legalName: "H&S Soluciones y Servicios Integrales",
-  url: "https://asiste360.com",
-  logo: "https://asiste360.com/logo.png",
+  url: "https://web.asiste360.com",
+  logo: "https://web.asiste360.com/logo.png",
   description:
     "CRM conversacional multicanal que centraliza WhatsApp, Instagram, Facebook y más, con IA que califica, agenda y vende.",
   address: {
@@ -45,7 +45,7 @@ const ORGANIZATION_JSON_LD = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://asiste360.com"),
+  metadataBase: new URL("https://web.asiste360.com"),
   title: {
     default: "Asiste360 — CRM conversacional multicanal",
     template: "%s | Asiste360",
