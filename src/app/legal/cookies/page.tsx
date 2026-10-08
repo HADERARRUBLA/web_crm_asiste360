@@ -24,8 +24,8 @@ export default function CookiesPage() {
           </li>
           <li>
             <strong>Analíticas</strong> — usamos <strong>Microsoft Clarity</strong> (mapas de calor y
-            grabación de sesiones anónimas para entender cómo se usa el sitio); recomendado y aún
-            pendiente de instalar: Google Analytics 4, para métricas de tráfico y conversión.
+            grabación de sesiones anónimas) y <strong>Google Analytics 4</strong> (métricas de tráfico,
+            comportamiento y conversión) para entender cómo se usa el sitio.
           </li>
           <li>
             <strong>Publicitarias</strong> — recomendado: Meta Pixel (medición y optimización de

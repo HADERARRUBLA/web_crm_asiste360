@@ -83,6 +83,14 @@ export default function RootLayout({
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "yujwleesck");`}
         </Script>
+        {/* Google Analytics 4 — trafico y conversiones (ver /legal/cookies) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-1N7J5F8P45" strategy="afterInteractive" />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1N7J5F8P45');`}
+        </Script>
         {children}
       </body>
     </html>
