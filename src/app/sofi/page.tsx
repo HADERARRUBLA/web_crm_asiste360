@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Image from "next/image";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/links";
 import { Reveal } from "@/components/reveal";
-import { ChannelIcon } from "@/components/channel-icon";
+import { ChannelIcon, type IconName } from "@/components/channel-icon";
 
 export const metadata: Metadata = {
   title: "Prueba a Sof IA gratis 30 días",
@@ -13,26 +12,22 @@ export const metadata: Metadata = {
 };
 
 const DOLORES = [
-  {
-    title: "Te escriben y no alcanzas a contestar",
-    body: "Cada mensaje sin respuesta a tiempo es una venta que se enfría o se va con otro.",
-  },
-  {
-    title: "Fuera de horario, nadie responde",
-    body: "En la noche, el fin de semana, en la madrugada — Sof IA sigue ahí, contestando por ti.",
-  },
-  {
-    title: "No tienes dónde ver todo junto",
-    body: "Conversaciones, citas y clientes regados — sin un solo lugar para darles seguimiento.",
-  },
+  { label: "Sin respuesta a tiempo", rotate: "-rotate-2" },
+  { label: "Fuera de horario, nadie contesta", rotate: "rotate-1" },
+  { label: "Varios canales, todo disperso", rotate: "-rotate-1" },
+  { label: "No hay un solo lugar para verlo todo", rotate: "rotate-2" },
+  { label: "No te alcanza el tiempo", rotate: "-rotate-2" },
+  { label: "Cada cliente perdido es plata que se va", rotate: "rotate-1" },
 ];
 
-const FLUJO_PASOS = [
-  { n: "1", title: "Contesta", body: "Responde al instante por WhatsApp, a cualquier hora del día." },
-  { n: "2", title: "Consulta tu calendario", body: "Revisa la disponibilidad real, sin doble reserva." },
-  { n: "3", title: "Agenda y confirma", body: "Deja la cita lista y programa el recordatorio automático." },
-  { n: "4", title: "Transfiere si hace falta", body: "Si detecta algo urgente, sabe a quién pasárselo." },
+const CHANNELS_ENTRADA: { name: string; icon: IconName; color: string }[] = [
+  { name: "WebChat", icon: "webchat", color: "#6C4CF1" },
+  { name: "Instagram", icon: "instagram", color: "#C13584" },
+  { name: "Messenger", icon: "messenger", color: "#0866FF" },
+  { name: "WhatsApp", icon: "whatsapp", color: "#25D366" },
 ];
+
+const ACCIONES = ["Analiza", "Consulta", "Responde", "Comparte", "Registra", "Escala"];
 
 const PASOS = [
   { n: "1", title: "Escríbele a Sof IA", body: "Le cuentas en qué negocio estás y qué necesitas." },
@@ -86,9 +81,9 @@ function SofIA() {
   );
 }
 
-function SparkleIcon() {
+function SparkleIcon({ size = 28 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+    <svg viewBox="0 0 24 24" style={{ width: size, height: size }} fill="none">
       <path
         d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"
         stroke="#fff"
@@ -99,59 +94,41 @@ function SparkleIcon() {
   );
 }
 
-function CalendarCheckIcon() {
+function VerifiedIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-      <rect x="4" y="5" width="16" height="15" rx="2" stroke="#fff" strokeWidth="1.5" />
-      <path d="M4 9h16" stroke="#fff" strokeWidth="1.5" />
-      <path d="M8 3v3M16 3v3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M9 14l2 2 4-4" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function FlowNode({
-  color,
-  label,
-  highlighted = false,
-  children,
-}: {
-  color: "teal" | "violet" | "blue";
-  label: string;
-  highlighted?: boolean;
-  children: ReactNode;
-}) {
-  const bg =
-    color === "teal"
-      ? "bg-teal-500"
-      : color === "violet"
-        ? "bg-gradient-to-br from-violet-2 to-violet"
-        : "bg-blue-600";
-  return (
-    <div className="flex flex-col items-center gap-2 px-4">
-      <div
-        className={`flex h-16 w-16 items-center justify-center rounded-2xl shadow-md ${bg} ${
-          highlighted ? "animate-pulse-ring" : ""
-        }`}
-      >
-        {children}
-      </div>
-      <span className="text-xs font-semibold text-navy">{label}</span>
-    </div>
-  );
-}
-
-function FlowArrow() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 rotate-90 text-violet/50 sm:rotate-0" fill="none">
       <path
-        d="M4 12h14M13 6l6 6-6 6"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
+        d="M12 3.5l2.2 1.3 2.5-.3 1 2.3 2.1 1.4-.6 2.5.6 2.5-2.1 1.4-1 2.3-2.5-.3L12 18l-2.2-1.3-2.5.3-1-2.3-2.1-1.4.6-2.5-.6-2.5 2.1-1.4 1-2.3 2.5.3Z"
+        stroke="#fff"
+        strokeWidth="1.4"
         strokeLinejoin="round"
       />
+      <path d="M9 12l2 2 4-4" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+function ChevronRight() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4 flex-none text-violet/60" fill="none">
+      <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChannelBadge({ name, icon, color, delayMs }: { name: string; icon: IconName; color: string; delayMs: number }) {
+  return (
+    <Reveal delayMs={delayMs} className="reveal-pop">
+      <div className="flex flex-col items-center gap-2">
+        <div
+          className="flex h-12 w-12 items-center justify-center rounded-xl shadow-md sm:h-14 sm:w-14"
+          style={{ backgroundColor: color }}
+        >
+          <ChannelIcon name={icon} size={24} />
+        </div>
+        <span className="text-[11px] font-semibold text-navy">{name}</span>
+      </div>
+    </Reveal>
   );
 }
 
@@ -173,8 +150,8 @@ export default async function SofiPromoPage({
       />
       <main className="flex-1 pb-24 md:pb-0">
         {/* TOP BAR — solo marca, sin navegación, sin salidas. Logo grande con
-            la misma animación de cometa-en-el-aro ya aprobada en el sitio
-            (site-nav.tsx), aquí siempre activa en vez de solo al hover. */}
+            la misma animación de cometa sobre el aro ya usada en
+            site-nav.tsx, aquí siempre activa (no solo al hover). */}
         <div className="flex items-center justify-center gap-3 border-b border-line px-6 py-5">
           <span className="relative inline-flex h-14 w-[72px] flex-none items-center justify-center">
             <Image src="/logo-orbit.png" alt="" aria-hidden="true" fill sizes="72px" className="object-contain" />
@@ -215,7 +192,6 @@ export default async function SofiPromoPage({
 
         {/* HERO */}
         <section className="dotgrid relative overflow-hidden px-6 py-16 text-center md:px-12 md:py-24">
-          {/* blobs de fondo, puramente decorativos */}
           <div
             aria-hidden
             className="animate-blob pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-violet/20 blur-3xl"
@@ -255,99 +231,107 @@ export default async function SofiPromoPage({
                 Probar a Sof IA gratis por WhatsApp
               </a>
             </div>
-            <p
-              className="animate-fade-up mt-4 text-xs text-gray"
-              style={{ animationDelay: "0.3s" }}
-            >
+            <p className="animate-fade-up mt-4 text-xs text-gray" style={{ animationDelay: "0.3s" }}>
               30 días gratis · sin tarjeta · cancelas cuando quieras
             </p>
           </div>
         </section>
 
-        {/* ASI TRABAJA SOF IA — diagrama de flujo, nodo a nodo al hacer scroll */}
-        <section className="px-6 py-20 md:px-12">
-          <div className="mx-auto max-w-4xl text-center">
-            <Reveal>
-              <span className="mx-auto mb-4 inline-block w-fit rounded-full bg-violet/10 px-4 py-1.5 font-mono text-xs font-semibold text-violet">
-                Así funciona
-              </span>
-            </Reveal>
-            <Reveal delayMs={60}>
-              <h2 className="font-heading text-2xl font-bold text-navy md:text-3xl">
-                Así trabaja <SofIA /> en cada conversación
-              </h2>
-            </Reveal>
-
-            <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-0">
-              <Reveal delayMs={150}>
-                <FlowNode color="teal" label="WhatsApp">
-                  <ChannelIcon name="whatsapp" size={28} />
-                </FlowNode>
-              </Reveal>
-              <Reveal delayMs={320}>
-                <FlowArrow />
-              </Reveal>
-              <Reveal delayMs={420}>
-                <FlowNode color="violet" label="Sof IA" highlighted>
-                  <SparkleIcon />
-                </FlowNode>
-              </Reveal>
-              <Reveal delayMs={600}>
-                <FlowArrow />
-              </Reveal>
-              <Reveal delayMs={700}>
-                <FlowNode color="blue" label="Agenda / CRM">
-                  <CalendarCheckIcon />
-                </FlowNode>
-              </Reveal>
-            </div>
-
-            <div className="mt-14 grid gap-5 text-left sm:grid-cols-2">
-              {FLUJO_PASOS.map((step, i) => (
-                <Reveal key={step.n} delayMs={850 + i * 90}>
-                  <div className="flex items-start gap-3 rounded-2xl bg-blue-tint p-4">
-                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-violet text-xs font-bold text-white">
-                      {step.n}
-                    </span>
-                    <div>
-                      <p className="font-semibold text-navy">{step.title}</p>
-                      <p className="mt-0.5 text-sm text-gray">{step.body}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* DOLORES */}
+        {/* DOLORES — chips dispersos, para identificarnos con el problema antes de mostrar la solución */}
         <section className="bg-blue-tint px-6 py-16 md:px-12">
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
-                ¿Te suena familiar?
-              </h2>
+              <h2 className="font-heading text-2xl font-bold text-navy md:text-3xl">¿Te suena familiar?</h2>
             </Reveal>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               {DOLORES.map((d, i) => (
-                <Reveal key={d.title} delayMs={i * 100}>
-                  <div className="h-full rounded-2xl bg-white p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
-                    <h3 className="font-heading text-base font-bold text-navy">{d.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray">{d.body}</p>
-                  </div>
+                <Reveal key={d.label} delayMs={i * 90} className={`reveal-pop ${d.rotate}`}>
+                  <span className="inline-block rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm">
+                    {d.label}
+                  </span>
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* SOF IA EN ACCION */}
+        {/* ASI APARECE SOF IA + DIAGRAMA DE FLUJO */}
         <section className="px-6 py-20 md:px-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <p className="mx-auto max-w-md text-[15px] leading-relaxed text-gray">
+                ¿Y si una sola persona —disponible 24/7, en todos tus canales— pudiera con todo eso?
+              </p>
+            </Reveal>
+
+            {/* Sof IA entra en escena */}
+            <Reveal delayMs={120} className="reveal-pop">
+              <div className="relative mx-auto mt-10 h-24 w-24">
+                <div className="animate-pulse-ring absolute inset-0 rounded-full" />
+                <div className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-violet-2 to-violet shadow-lg">
+                  <SparkleIcon size={36} />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delayMs={220}>
+              <p className="mt-4 font-heading text-xl font-bold text-navy">
+                Así aparece <SofIA />
+              </p>
+            </Reveal>
+
+            {/* Canales convergiendo */}
+            <Reveal delayMs={320}>
+              <p className="mt-12 font-mono text-xs font-semibold uppercase tracking-wide text-violet">
+                Un solo lugar para todos tus canales
+              </p>
+            </Reveal>
+            <div className="mx-auto mt-6 flex max-w-md justify-center gap-6 sm:gap-10">
+              {CHANNELS_ENTRADA.map((ch, i) => (
+                <ChannelBadge key={ch.name} name={ch.name} icon={ch.icon} color={ch.color} delayMs={420 + i * 100} />
+              ))}
+            </div>
+            <div className="relative mx-auto -mt-1 h-12 w-full max-w-sm">
+              <svg viewBox="0 0 320 50" className="h-full w-full" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M40,0 L160,45" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
+                <path d="M120,0 L160,45" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
+                <path d="M200,0 L162,45" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
+                <path d="M280,0 L164,45" className="flow-line" stroke="#6C4CF1" strokeWidth="2" fill="none" opacity="0.45" />
+              </svg>
+            </div>
+            <Reveal delayMs={800} className="reveal-pop">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-2 to-violet shadow-md">
+                <SparkleIcon size={24} />
+              </div>
+            </Reveal>
+
+            {/* Cadena de acciones */}
+            <Reveal delayMs={950}>
+              <p className="mt-12 font-mono text-xs font-semibold uppercase tracking-wide text-violet">
+                Y en segundos
+              </p>
+            </Reveal>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-3">
+              {ACCIONES.map((accion, i) => (
+                <div key={accion} className="flex items-center gap-1.5">
+                  <Reveal delayMs={1000 + i * 120} className="reveal-pop">
+                    <span className="inline-block rounded-full bg-navy px-4 py-2 text-xs font-semibold text-white sm:text-sm">
+                      {accion}
+                    </span>
+                  </Reveal>
+                  {i < ACCIONES.length - 1 && <ChevronRight />}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SOF IA EN ACCION — foto, descripción y stats reales */}
+        <section className="bg-blue-tint px-6 py-20 md:px-12">
           <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[220px_1fr]">
             <Reveal>
               <div className="relative mx-auto h-[220px] w-[220px]">
                 <div className="animate-pulse-ring absolute inset-0 rounded-3xl" />
-                <div className="animate-float-y relative h-full w-full overflow-hidden rounded-3xl bg-blue-tint">
+                <div className="animate-float-y relative h-full w-full overflow-hidden rounded-3xl bg-white">
                   <Image src="/team/ana.jpg" alt="Sof IA" fill className="object-cover" />
                 </div>
                 <span className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-navy shadow">
@@ -394,7 +378,25 @@ export default async function SofiPromoPage({
           </div>
         </section>
 
-        {/* COMO FUNCIONA LA PRUEBA */}
+        {/* CONFIANZA — Meta, con mas peso visual */}
+        <section className="px-6 py-16 md:px-12">
+          <Reveal className="mx-auto max-w-2xl">
+            <div className="flex flex-col items-center gap-4 rounded-3xl border border-line bg-white px-6 py-8 text-center shadow-sm sm:flex-row sm:text-left">
+              <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-[#0866FF] shadow-md">
+                <VerifiedIcon />
+              </div>
+              <div>
+                <p className="font-heading text-xl font-bold text-navy">Proveedor habilitado por Meta</p>
+                <p className="mt-1 text-sm leading-relaxed text-gray">
+                  Trabajamos por la vía oficial de WhatsApp Business — tu número, verificado y protegido
+                  desde el primer día.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* COMO EMPEZAR */}
         <section className="bg-blue-tint px-6 py-20 md:px-12">
           <div className="mx-auto max-w-5xl">
             <Reveal>
@@ -416,15 +418,8 @@ export default async function SofiPromoPage({
           </div>
         </section>
 
-        {/* CONFIANZA */}
-        <section className="px-6 py-12 text-center md:px-12">
-          <p className="mx-auto max-w-md text-xs font-semibold uppercase tracking-wide text-gray">
-            Proveedor habilitado por Meta · WhatsApp Business oficial
-          </p>
-        </section>
-
         {/* FAQ */}
-        <section className="bg-blue-tint px-6 py-20 md:px-12">
+        <section className="px-6 py-20 md:px-12">
           <div className="mx-auto max-w-3xl">
             <Reveal>
               <h2 className="text-center font-heading text-2xl font-bold text-navy md:text-3xl">
@@ -434,7 +429,7 @@ export default async function SofiPromoPage({
             <div className="mt-10 space-y-4">
               {FAQ.map((item, i) => (
                 <Reveal key={item.q} delayMs={i * 70}>
-                  <div className="rounded-2xl bg-white p-6">
+                  <div className="rounded-2xl bg-blue-tint p-6">
                     <p className="font-semibold text-navy">{item.q}</p>
                     <p className="mt-2 text-sm leading-relaxed text-gray">{item.a}</p>
                   </div>
@@ -445,7 +440,7 @@ export default async function SofiPromoPage({
         </section>
 
         {/* CTA FINAL */}
-        <Reveal className="mx-6 my-20 md:mx-12">
+        <Reveal className="mx-6 mb-20 md:mx-12">
           <section className="dotgrid relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy to-[#372b70] px-8 py-16 text-center">
             <div className="relative">
               <h2 className="font-heading text-3xl font-bold text-white">
