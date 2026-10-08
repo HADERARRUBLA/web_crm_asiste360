@@ -92,12 +92,7 @@ export default function PrivacidadPage() {
           pueden estar ubicados fuera de Colombia. Al usar nuestros servicios, usted acepta esta
           transferencia internacional, la cual realizamos adoptando las garantías razonables exigidas por
           la normatividad colombiana de protección de datos (Decreto 1377 de 2013, artículo 26) para
-          asegurar un nivel adecuado de protección en el país de destino.{" "}
-          <em>
-            [Precisar región/país exacto de los servidores Azure cuando se confirme, para nombrarlo
-            explícitamente.]
-          </em>{" "}
-          Sus datos también pueden ser tratados por proveedores tecnológicos que nos prestan servicios de
+          asegurar un nivel adecuado de protección en el país de destino. Sus datos también pueden ser tratados por proveedores tecnológicos que nos prestan servicios de
           mensajería (Meta/WhatsApp, como proveedor habilitado) y CRM (GoHighLevel), bajo acuerdos de
           confidencialidad y tratamiento de datos.
         </p>
@@ -114,7 +109,7 @@ export default function PrivacidadPage() {
 
       <LegalSection title="9. Vigencia">
         <p>
-          Esta política rige a partir de <em>[fecha de publicación del sitio]</em> y podrá actualizarse;
+          Esta política rige a partir del <strong>1 de julio de 2026</strong> y podrá actualizarse;
           los cambios se publicarán en esta misma página.
         </p>
       </LegalSection>

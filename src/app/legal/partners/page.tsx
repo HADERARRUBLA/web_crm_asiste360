@@ -43,9 +43,8 @@ export default function PartnersLegalPage() {
       <LegalSection title="3. Descuentos delegables">
         <p>
           El Partner puede ofrecer, a su discreción, un descuento a los clientes que refiera dentro de
-          los siguientes topes: hasta 10% en Starter, 15% en Pro, 20% en Avanzado; en Enterprise el
-          descuento se negocia directamente con el equipo comercial de Asiste360.{" "}
-          <em>[Rangos propuestos, pendientes de confirmación final.]</em>
+          los siguientes topes: hasta 10% en Starter, 15% en Pro, 30% en Avanzado; en Enterprise el
+          descuento se negocia directamente con el equipo comercial de Asiste360.
         </p>
       </LegalSection>
 

@@ -172,7 +172,7 @@ export default function TerminosPage() {
           Soluciones y Servicios Integrales podrá suspender o terminar el servicio de inmediato ante
           incumplimiento grave de estos términos o de las políticas de las plataformas conectadas. Tras
           la terminación, sus datos podrán eliminarse de forma permanente luego de un período razonable
-          de gracia. <em>[Definir el período exacto de gracia antes de publicar, ej. 30 días.]</em>
+          de gracia de <strong>30 días</strong>.
         </p>
       </LegalSection>
 

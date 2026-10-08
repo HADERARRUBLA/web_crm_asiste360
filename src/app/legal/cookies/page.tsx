@@ -23,8 +23,9 @@ export default function CookiesPage() {
             seguridad).
           </li>
           <li>
-            <strong>Analíticas</strong> — recomendado: Google Analytics 4, para entender cómo se usa el
-            sitio y mejorar la experiencia.
+            <strong>Analíticas</strong> — usamos <strong>Microsoft Clarity</strong> (mapas de calor y
+            grabación de sesiones anónimas para entender cómo se usa el sitio); recomendado y aún
+            pendiente de instalar: Google Analytics 4, para métricas de tráfico y conversión.
           </li>
           <li>
             <strong>Publicitarias</strong> — recomendado: Meta Pixel (medición y optimización de
